@@ -1,0 +1,33 @@
+<apex:page standardController="Contact" extensions="NoRecords" recordSetVar="con">
+    <apex:pageBlock>
+
+        <apex:form>
+            <apex:panelGrid columns="4">
+                <apex:commandLink action="{!first}">FIRST</apex:commandLink>
+                <apex:commandLink action="{!previous}">PREVIOUS</apex:commandLink>
+                <apex:commandLink action="{!next}">NEXT</apex:commandLink>
+                <apex:commandLink action="{!last}">LAST</apex:commandLink>
+            </apex:panelGrid>
+            <apex:pageBlockSection>
+                <!-- <table> -->
+                    <!-- </table> -->
+                    <apex:dataList var="cont" value="{!con}">
+                        <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Account</th>
+                        </tr>
+                        <tr>
+                            <td>{!cont.Name}</td>
+                            <td>{!cont.Phone}</td>
+                            <td>{!cont.Email}</td>
+                            <td>{!cont.Email}</td>
+                        </tr>
+                    </table>
+                </apex:dataList>
+            </apex:pageBlockSection>
+        </apex:form>
+    </apex:pageBlock>
+</apex:page>

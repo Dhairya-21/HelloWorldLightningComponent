@@ -1,0 +1,64 @@
+<apex:page>
+    <apex:form>
+        <apex:pageBlock title="Register">
+            <apex:commandLink value="Go to Login page"></apex:commandLink>
+            <apex:pageBlockSection columns="2">
+                <apex:inputText label="Name: " id="name" onchange="val(0)" required="true"/>
+                <div id="err1" style="color:red"></div>
+                <apex:inputText label="Email: " id="email" onchange="val(1)" required="true"/>
+                <div id="err2" style="color:red"></div>
+                <apex:inputSecret label="Password: " id="pass"  required="true"/>
+                <apex:inputSecret label="Confirm Password: " id="cpass" required="true"/>
+                <div id="err3" style="color:red"></div>
+                <apex:inputText label="Age: " maxlength="3" onchange="val(2)" id="age"/>
+                <div id="err4" style="color:red"></div>
+                <apex:inputTextarea label="Bio "/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons>
+                <apex:commandButton value="Register" action="{!register}"></apex:commandButton>
+                <apex:commandButton value="Cancel" action="{!cancel}"></apex:commandButton>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        <script type="text/javascript">
+            function val(num) {
+                if (num == 0) {
+                    var regex = /^[a-z ,.'-]+$/i;
+                    if (regex.test(document.getElementById('name'))) {
+                        document.getElementById('err1').innerHTML = ''; 
+                    }
+                    else{
+                        document.getElementById('err1').innerHTML = 'Enter a valid name'; 
+                    }
+                }
+                else if (num == 1) {
+                    var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                    if(regex.test(document.getElementById('email'))){
+                        document.getElementById('err2').innerHTML = '';
+                    }
+                    else{
+                        document.getElementById('err2').innerHTML = 'Enter a valid Email';
+                    }
+                }
+                else{
+                    var age = document.getElementById('age').value;
+                    if (age > 0 && age < 100) {
+                        document.getElementById('err4').innerHTML = '';
+                    }
+                    else{
+                        document.getElementById('err4').innerHTML = 'Enter a valid Age';
+                    }
+                }
+            }
+            function password() {
+                var pass = document.getElementById('pass').value;
+                var cpass = document.getElementById('cpass').value;
+                if (cpass = pass) {
+                    document.getElementById('err3').innerHTML = '';
+                }
+                else{
+                    document.getElementById('err3').innerHTML = "Passwords don't match" ;
+                }
+            }
+        </script>
+    </apex:form>
+</apex:page>

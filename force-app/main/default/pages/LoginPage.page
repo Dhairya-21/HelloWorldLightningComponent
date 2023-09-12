@@ -1,0 +1,26 @@
+<apex:page controller="LoginPageC">
+    <apex:form>
+        <apex:pageBlock title="Login">
+            <apex:pageBlockSection columns="1">
+                <apex:inputText label="Email: " onchange="val()" required="true"/> 
+                <div id="err1" style="color:red"></div>
+                <apex:inputSecret label="Password: " required="true"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons>
+                <apex:commandButton value="Login" />
+                <apex:commandButton value="Register" action="{! Register}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        <script type="text/javascript">
+            function val() {
+                    var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                    if(regex.test(document.getElementById('email'))){
+                        doument.getElementById('err1').innerHTML = '';
+                    }
+                    else{
+                        doument.getElementById('err1').innerHTML = 'Enter a valid email';
+                    }
+            }
+        </script>
+    </apex:form>
+</apex:page>

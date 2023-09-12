@@ -1,0 +1,23 @@
+<!-- <apex:page >
+    <h1 style="text-align:center;font-size:40px; padding:12px">Login</h1> <br></br>
+    <apex:form style="padding: 12px; border: solid black;border-radius:8px;">
+        <apex:inputText >Username: </apex:inputText> <br></br>
+<apex:inputSecret >Password: </apex:inputSecret><br></br>
+		<apex:commandButton value="Login"></apex:commandButton>
+    </apex:form>
+</apex:page> -->
+<apex:page standardController="Contact" >
+    <apex:form >
+        <apex:pageBlock title="Create Contact">
+            <apex:pageBlockSection columns="1">
+                <apex:inputField value="{!Contact.FirstName}"/>
+                <apex:inputField value="{!Contact.LastName}"/>
+                <apex:inputField value="{!Contact.Email}"/>
+                <apex:inputField value="{!Contact.Birthdate}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!save}" value="Save"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
