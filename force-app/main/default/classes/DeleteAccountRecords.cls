@@ -1,15 +1,17 @@
 public with sharing class DeleteAccountRecords {
     public void DeleteAccountRecords(List<Contact> contact) {
-        Set<Id> AccountId = new Set<Id>();
-        Set<Id> ContactId = new Set<Id>();
-        for (Contact con : contact) {
-            AccountId.add(con.AccountId);
+        List<Contact> newContact = new List<Contact>();
+        List<Account> Account = new List<Account>();
+        for (Contact c : [SELECT Id, LastName, AccountId FROM Contact WHERE AccountId = :contact[0].AccountId]) {
+            newContact.add(c);
         }
-        for (Contact con2 : [SELECT Id, AccountId FROM Contact WHERE AccountId IN :AccountId]) {
-            con2.AccountId = '';
-            ContactId.add(con2.Id);
+        for (Contact c : newContact) {
+            c.AccountId = '0015j000019HqnGAAS';
         }
-        update new List<Contact>(Integer.valueOf(ContactId));
-        delete new List<Account>(Integer.valueOf(AccountId));
+        for (Account ac : [SELECT Id FROM Account WHERE Id = :contact[0].AccountId]) {
+            Account.add(ac);
+        }
+        update newContact;
+        delete Account;
     }
 }

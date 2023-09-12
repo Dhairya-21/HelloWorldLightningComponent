@@ -1,8 +1,8 @@
 public with sharing class ErrorLog {
     public void ErrorLog1() {
         List<Error_log__c> err = new List<Error_log__c>();
-        Error_log__c err1 = new Error_log__c();
         for (Integer i = 0; i < 4; i++) {
+            Error_log__c err1 = new Error_log__c();
             err1.Class_Name__c = 'Class ' + i;
             err1.Name = 'Error Log ' + i;
             err1.Exception_Message__c = 'This is an error caused by ';

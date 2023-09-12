@@ -1,14 +1,14 @@
 global class CreateOppRecordsSchedulable implements Schedulable {
     global void execute(SchedulableContext sc){
         CreateOppRecordsSchedulable c = new CreateOppRecordsSchedulable();
-        // c.CreateOppRecordsSchedulable();
-        String cron = '0 30 11 * * * *';
-        System.schedule('CreateOppCron', cron, c);
+        c.CreateOppRecordsSchedulable();
+        // String cron = '0 30 11 * * ?';
+        // System.schedule('CreateOppCron', cron, c);
     }
     global void CreateOppRecordsSchedulable() {
-        Opportunity o = new Opportunity();
         List<Opportunity> opp = new List<Opportunity>();
         for (Integer i = 1; i <= 10; i++) {
+            Opportunity o = new Opportunity();
             o.Name = 'DailyOpp ' + i;
             o.Amount = 10000 * i + 20 * i - 17 * math.pow(i, 2);
             o.CloseDate = date.today() + 15;
