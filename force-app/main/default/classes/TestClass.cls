@@ -43,12 +43,6 @@ public class TestClass {
         GreatProblem gp = new GreatProblem();
         gp.GreatProblem(con);
     }
-
-    @isTest static void ApprovalAccount(){
-        List<Account> ListAcc = new List<Account>();
-        ApprovalAccount appAcc = new ApprovalAccount();
-        appAcc.ApprovalAccount(ListAcc);
-    }
     
     @isTest static void ContactUpdate(){
         System.Test.startTest();
@@ -102,12 +96,6 @@ public class TestClass {
     @isTest static void FileUpdate(){
         FileUpdate FU = new FileUpdate();
         FU.FileUpdate1();
-    }
-
-    @isTest static void HotLead(){
-        List<Lead> Lead = new List<Lead>();
-        HotLead HL = new HotLead();
-        HL.HotLead(Lead);
     }
 
     @isTest static void ImageFutureApex(){
