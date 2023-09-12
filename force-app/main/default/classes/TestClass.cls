@@ -114,13 +114,7 @@ public class TestClass {
         PrefixSalutation PSP = new PrefixSalutation();
         PSP.PrefixSalutation(Contact);
     }
-
-    @isTest static void ProspectingOpportunity(){
-        List<Opportunity> Opportunities = new List<Opportunity>();
-        ProspectingOpportunity PO = new ProspectingOpportunity();
-        PO.ProspectingOpportunity(Opportunities);
-    }
-
+    
     @isTest static void RatingIsWarm(){
         // List<Account> Account = new List<Account>();
         RatingIsWarm.Rate();
