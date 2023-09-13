@@ -1,8 +1,8 @@
 # All the Files are in force-app/main/default 
-For vf pages --> pages
-For apex classes --> classes
-For Apex Triggers --> triggers
-Triggers don't contain any code. All of the triggers is written by handler classes.
+- For vf pages --> pages
+- For apex classes --> classes
+- For Apex Triggers --> triggers
+- Triggers don't contain any code. All of the triggers is written by handler classes.
 
 # Salesforce DX Project: Next Steps
 
