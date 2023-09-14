@@ -4,7 +4,7 @@ public with sharing class TaskOnOpportunity {
         td.Subject = 'Opportunity Update';
         td.Description = 'A Opportunity has been modified. Please have a look.';
         // Id i = 0055j000008Wn3OAAS;
-        td.ownerId = '0055j000008Wn3OAAS';
+        td.ownerId = UserInfo.getUserId();
         td.Priority = 'High';
         insert td;
     }

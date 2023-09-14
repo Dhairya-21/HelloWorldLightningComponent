@@ -3,10 +3,10 @@ trigger ContactT on Contact (after insert, after update, before delete) {
     //     CreateEvent c = new CreateEvent();
     //     c.CreateEvent(Trigger.new);
     // }
-    if (Trigger.isDelete) {
-        DeleteAccountRecords d = new DeleteAccountRecords();
-        d.DeleteAccountRecords(Trigger.old);
-    }
+    // if (Trigger.isDelete) {
+    //     DeleteAccountRecords d = new DeleteAccountRecords();
+    //     d.DeleteAccountRecords(Trigger.old);
+    // }
     // PrefixSalutation pf = new PrefixSalutation();
     // pf.PrefixSalutation(Trigger.new);
     //
