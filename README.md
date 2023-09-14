@@ -1,3 +1,9 @@
+# All the Files are in force-app/main/default 
+- For vf pages --> pages
+- For apex classes --> classes
+- For Apex Triggers --> triggers
+- Triggers don't contain any code. All of the triggers is written by handler classes.
+
 # Salesforce DX Project: Next Steps
 
 Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
