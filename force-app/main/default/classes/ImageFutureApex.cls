@@ -3,9 +3,41 @@ public class ImageFutureApex {
   public ImageFutureApex(ApexPages.StandardController Opp) {
     Id1 = Opp.getId();
   }
+  public void Id12(){
+    System.debug(ImageFutureApex.Id1);
+  }
+  static String images;
+
+  public PageReference test() {
+    return null;
+  }
+  public List<SelectOption> getOption() {
+    List<SelectOption> values = new List<SelectOption>();
+    List<PicklistValueList__c> PVL = PicklistValueList__c.getAll().values();
+    for (PicklistValueList__c p : PVL) {
+      values.add(
+        new SelectOption(String.valueOf(p.value__c), String.valueOf(p.Label__c))
+      );
+    }
+    System.debug(values);
+    return values;
+  }
+  public String getimages() {
+    // System.debug(images);
+    // System.debug(this.images);
+    return images;
+  }
+  public void setimages(String images1) {
+    // System.debug(images);
+    images = images1;
+  }
+  
   @future(Callout=true)
   public static void ImageApex() {
-    String s = 'https://api.unsplash.com/photos/random/?client_id=-IbUhKAcKLxy10G1HP2daLoXEqV_L3GEvo3WBeLgqFk&query=City';
+    String s =
+      'https://api.unsplash.com/photos/random/?client_id=-IbUhKAcKLxy10G1HP2daLoXEqV_L3GEvo3WBeLgqFk&query=' +
+      ImageFutureApex.images;
+    // String s = 'https://api.unsplash.com/photos/random/?client_id=-IbUhKAcKLxy10G1HP2daLoXEqV_L3GEvo3WBeLgqFk&query=city';
     Http http = new Http();
     HttpRequest request = new HttpRequest();
     // String s = 'https://source.unsplash.com/random/?NorthernLights&2';
@@ -29,11 +61,29 @@ public class ImageFutureApex {
     request2.setMethod('GET');
     HttpResponse response1 = http.send(request2);
     Blob bl = response1.getBodyAsBlob();
-    // String vd = EncodingUtil.base64Encode(bl); 
-    ContentVersion CV = new ContentVersion(Title = 'Image', VersionData = bl, PathOnClient = 'Image.jpeg');
+    // String vd = EncodingUtil.base64Encode(bl);
+    ContentVersion CV = new ContentVersion(
+      Title = 'Image',
+      VersionData = bl,
+      PathOnClient = 'Image.jpeg'
+    );
     insert CV;
-    ContentDocument CD = [Select Id from ContentDocument where LatestPublishedVersionId = :CV.Id WITH SECURITY_ENFORCED];
-    ContentDocumentLink CDL = new ContentDocumentLink(ContentDocumentId = CD.Id, LinkedEntityId = ImageFutureApex.Id1, ShareType = 'V');
+    ContentDocument CD = [
+      SELECT Id
+      FROM ContentDocument
+      WHERE LatestPublishedVersionId = :CV.Id
+      WITH SECURITY_ENFORCED
+    ];
+    ContentDocumentLink CDL = new ContentDocumentLink(
+      ContentDocumentId = CD.Id,
+      LinkedEntityId = ImageFutureApex.Id1,
+      ShareType = 'V'
+    );
+    // ContentDocumentLink CDL = new ContentDocumentLink(
+    //   ContentDocumentId = CD.Id,
+    //   LinkedEntityId = '0065j00001NtAHJAA3',
+    //   ShareType = 'V'
+    // );
     insert CDL;
     // Attachment at = new Attachment(
     //   Name = 'Img',
