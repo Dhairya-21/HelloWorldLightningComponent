@@ -1,3 +1,10 @@
-<aura:component>
-    
+<aura:component implements="force:hasRecordId, flexipage:availableForAllPageTypes" >
+    <lightning:card title="Create Contact">
+        
+        <lightning:input label="Account Id" value="{!v.recordId}" disabled="true" />
+        <lightning:input placeholder="Enter your First name" label="First Name" required="true" />
+        <lightning:input placeholder="Enter your Last name" label="Last Name" required="true" />
+        <lightning:input placeholder="Enter your Phone number" label="Phone"  />
+        <lightning:input placeholder="Enter your Email" label="Email" />
+    </lightning:card>
 </aura:component>	

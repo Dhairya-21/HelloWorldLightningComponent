@@ -1,18 +1,18 @@
-<apex:page standardController="Opportunity" extensions="ImageFutureApex"> 
-<!-- <apex:page standardController="Opportunity" extensions="ImageFutureApex" action="{! Imageapex}">  -->
-    <apex:form>
+<!-- <apex:page standardController="Opportunity" extensions="ImageFutureApex">  -->
+<apex:page standardController="Opportunity" extensions="ImageFutureApex" action="{! Imageapex}"> 
+    <!-- <apex:form>
     <apex:pageBlock>
         <apex:pageBlockSection>
                 Select an Option:
                 <apex:selectList id="op" multiselect="false" size="1" value="{! images }" >
-                    <apex:selectOptions value="{! Option }"/>
+                    <apex:selectOptions value="{! Option }"/> -->
                     <!-- <apex:selectOption value="{! option }" itemValue="asd"/> -->
                     <!-- <apex:selectOption value="{! option }" /> -->
-                </apex:selectList>
+                <!-- </apex:selectList>
             </apex:pageBlockSection>
             <apex:pageBlockButtons>
                 <apex:commandButton value="Submit" reRender="out" status="status" action="{! ImageApex}"/>
             </apex:pageBlockButtons>
         </apex:pageBlock>
-    </apex:form>
+    </apex:form> -->
 </apex:page>

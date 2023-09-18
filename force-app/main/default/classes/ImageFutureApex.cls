@@ -13,7 +13,8 @@ public class ImageFutureApex {
   }
   public List<SelectOption> getOption() {
     List<SelectOption> values = new List<SelectOption>();
-    List<PicklistValueList__c> PVL = PicklistValueList__c.getAll().values();
+    List<PicklistValueList__c> PVL = new List<PicklistValueList__c>(); 
+    PVL = PicklistValueList__c.getAll().values();
     for (PicklistValueList__c p : PVL) {
       values.add(
         new SelectOption(String.valueOf(p.value__c), String.valueOf(p.Label__c))
@@ -34,10 +35,10 @@ public class ImageFutureApex {
   
   @future(Callout=true)
   public static void ImageApex() {
-    String s =
-      'https://api.unsplash.com/photos/random/?client_id=-IbUhKAcKLxy10G1HP2daLoXEqV_L3GEvo3WBeLgqFk&query=' +
-      ImageFutureApex.images;
-    // String s = 'https://api.unsplash.com/photos/random/?client_id=-IbUhKAcKLxy10G1HP2daLoXEqV_L3GEvo3WBeLgqFk&query=city';
+    // String s =
+    //   'https://api.unsplash.com/photos/random/?client_id=-IbUhKAcKLxy10G1HP2daLoXEqV_L3GEvo3WBeLgqFk&query=' +
+    //   ImageFutureApex.images;
+    String s = 'https://api.unsplash.com/photos/random/?client_id=-IbUhKAcKLxy10G1HP2daLoXEqV_L3GEvo3WBeLgqFk&query=city';
     Http http = new Http();
     HttpRequest request = new HttpRequest();
     // String s = 'https://source.unsplash.com/random/?NorthernLights&2';
@@ -46,11 +47,11 @@ public class ImageFutureApex {
     // request.getHeader('-IbUhKAcKL xy10G1HP2daLoXEqV_L3GEvo3WBeLgqFk');
     HttpResponse response = http.send(request);
     // System.debug(response.getBody());
-    Map<String, Object> jsonf = (Map<String, Object>) JSON.deserializeUntyped(
-      response.getBody()
-    );
+    Map<String, Object> jsonf = new Map<String, Object>();
+    jsonf = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
     // System.debug(jsonf);
-    Map<String, Object> o = (Map<String, Object>) jsonf.get('urls');
+    Map<String, Object> o = new Map<String, Object>();
+    o = (Map<String, Object>) jsonf.get('urls');
     String link = (String) o.get('regular');
     System.debug(link);
     HttpRequest request2 = new HttpRequest();
