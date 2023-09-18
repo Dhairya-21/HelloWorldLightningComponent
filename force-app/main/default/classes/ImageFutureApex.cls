@@ -1,9 +1,9 @@
 public class ImageFutureApex {
-  static String Id1;
+  static String Id1 = ApexPages.currentPage().getParameters().get('Id');
   public ImageFutureApex(ApexPages.StandardController Opp) {
     Id1 = Opp.getId();
   }
-  public void Id12(){
+  public void Id12() {
     System.debug(ImageFutureApex.Id1);
   }
   static String images;
@@ -13,7 +13,7 @@ public class ImageFutureApex {
   }
   public List<SelectOption> getOption() {
     List<SelectOption> values = new List<SelectOption>();
-    List<PicklistValueList__c> PVL = new List<PicklistValueList__c>(); 
+    List<PicklistValueList__c> PVL = new List<PicklistValueList__c>();
     PVL = PicklistValueList__c.getAll().values();
     for (PicklistValueList__c p : PVL) {
       values.add(
@@ -32,13 +32,15 @@ public class ImageFutureApex {
     // System.debug(images);
     images = images1;
   }
-  
+
+  static final String IdFinal = Id1;
+
   @future(Callout=true)
   public static void ImageApex() {
-    // String s =
-    //   'https://api.unsplash.com/photos/random/?client_id=-IbUhKAcKLxy10G1HP2daLoXEqV_L3GEvo3WBeLgqFk&query=' +
-    //   ImageFutureApex.images;
-    String s = 'https://api.unsplash.com/photos/random/?client_id=-IbUhKAcKLxy10G1HP2daLoXEqV_L3GEvo3WBeLgqFk&query=city';
+    String s =
+      'https://api.unsplash.com/photos/random/?client_id=-IbUhKAcKLxy10G1HP2daLoXEqV_L3GEvo3WBeLgqFk&query=' +
+      ImageFutureApex.images;
+    // String s = 'https://api.unsplash.com/photos/random/?client_id=-IbUhKAcKLxy10G1HP2daLoXEqV_L3GEvo3WBeLgqFk&query=city';
     Http http = new Http();
     HttpRequest request = new HttpRequest();
     // String s = 'https://source.unsplash.com/random/?NorthernLights&2';
@@ -77,7 +79,7 @@ public class ImageFutureApex {
     ];
     ContentDocumentLink CDL = new ContentDocumentLink(
       ContentDocumentId = CD.Id,
-      LinkedEntityId = ImageFutureApex.Id1,
+      LinkedEntityId = Id1,
       ShareType = 'V'
     );
     // ContentDocumentLink CDL = new ContentDocumentLink(

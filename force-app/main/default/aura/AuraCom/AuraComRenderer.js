@@ -13,9 +13,9 @@
         this.superAfterRender();
         console.log('after rerender');
     },
-    unrender: function(){
-        this.unRender();
-        console.log('unrender');
-    }
+    // unrender: function(){
+    //     this.unRender();
+    //     console.log('unrender');
+    // }
 
 })

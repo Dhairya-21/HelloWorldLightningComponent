@@ -1,0 +1,14 @@
+<aura:component
+  implements="force:hasRecordId, flexipage:availableForAllPageTypes"
+>
+<aura:attribute name="ListAcc" type="Account" default="{'SObject' : 'Account', 'Name' : 'Dhairya'}" />
+<aura:attribute name="Acc" type="String" default="None" />
+{!v.Acc}
+<lightning:select value="{!v.Acc}">
+    <option value="{#v.Acc}" label="{#v.Acc}" />
+    <!-- <aura:iteration items="{!v.ListAcc}" var="account" > -->
+        <!-- <option value="{!v.account.Name}" label="{!v.account.Name}"/> -->
+        <!-- </aura:iteration> -->
+        <option value="{!v.ListAcc.Name}" label="{!v.ListAcc.Name}"/>
+</lightning:select>
+</aura:component>
