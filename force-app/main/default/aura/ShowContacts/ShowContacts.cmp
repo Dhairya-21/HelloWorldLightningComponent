@@ -1,14 +1,79 @@
 <aura:component
   implements="force:hasRecordId, flexipage:availableForAllPageTypes"
+  controller="ApexController"
 >
-<aura:attribute name="ListAcc" type="Account" default="{'SObject' : 'Account', 'Name' : 'Dhairya'}" />
-<aura:attribute name="Acc" type="String" default="None" />
-{!v.Acc}
-<lightning:select value="{!v.Acc}">
-    <option value="{#v.Acc}" label="{#v.Acc}" />
-    <!-- <aura:iteration items="{!v.ListAcc}" var="account" > -->
-        <!-- <option value="{!v.account.Name}" label="{!v.account.Name}"/> -->
-        <!-- </aura:iteration> -->
-        <option value="{!v.ListAcc.Name}" label="{!v.ListAcc.Name}"/>
-</lightning:select>
+  <aura:attribute name="Cont" type="Contact[]" />
+  <aura:attribute name="PList" type="Contact[]" />
+  <aura:attribute name="Psize" type="Integer" default="10" />
+  <aura:attribute name="Tsize" type="Integer" />
+  <aura:attribute name="start" type="Integer" />
+  <aura:attribute name="end" type="Integer" />
+
+  <aura:handler name="init" action="{!c.ContactsGet}" value="{!this}" />
+  <b>Contacts</b>
+  <div class="slds-form-element">
+    <div
+      style="display: flex; justify-content: space-between; margin: 10px 0px"
+    >
+      <lightning:input
+        aura:id="input1"
+        onchange="{!c.onChangeSearch}"
+        label="Search here..."
+        placeholder="Search"
+      />
+
+      <lightning:select
+        label="Display Records"
+        aura:id="records"
+        onchange="{!c.onChangeEvent}"
+        value="10"
+      >
+        <option value="5" label="5" />
+        <option value="10" label="10" />
+        <option value="15" label="15" />
+        <option value="20" label="20" />
+      </lightning:select>
+    </div>
+
+    <table class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-table_bordered">
+      <!-- <table> -->
+      <thead>
+        <tr style="background-color: white;">
+          <th>Name</th>
+          <th>Account Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+        </tr>
+        </thead>
+      <tbody>
+        <!-- <aura:iteration items="{!v.Cont}" var="a"> -->
+        <aura:iteration items="{!v.PList}" var="a">
+          <tr>
+            <td>{!a.LastName}</td>
+            <td>{!a.Account.Name}</td>
+            <td>{!a.Phone}</td>
+            <td>{!a.Email}</td>
+          </tr>
+        </aura:iteration>
+      </tbody>
+    </table>
+    <!-- <lightning:button value="First" disabled="{!v.start == 0}" label="First" /> -->
+    <div style="display: flex; justify-content: space-between; margin: 10px">
+      <div>Showing {!v.start + 1} - {!v.end + 1} from {!v.Tsize}</div>
+      <div>
+        <lightning:button
+          disabled="{!v.start == 0}"
+          label="Previous"
+          onclick="{!c.previous}"
+        />
+        <lightning:button
+          variant="brand"
+          disabled="{!v.start >= v.end}"
+          label="Next"
+          onclick="{!c.next}"
+        />
+      </div>
+    </div>
+    <!-- <lightning:button value="Last" disabled="{!v.start >= v.end}" label="Last" /> -->
+  </div>
 </aura:component>

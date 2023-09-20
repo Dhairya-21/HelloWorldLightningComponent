@@ -1,0 +1,7 @@
+.THIS .box {
+    background-color: wheat;
+    padding: 10px;
+    margin: 10px;
+    border: black solid;
+    border-radius: 10px;
+}
