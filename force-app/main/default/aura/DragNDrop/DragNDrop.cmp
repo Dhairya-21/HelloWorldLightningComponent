@@ -2,26 +2,30 @@
   implements="flexipage:availableForAllPageTypes, force:hasRecordId"
   controller="DragNDropClass"
 >
-  <aura:attribute name="Accs" type="Account[]" />
+  <aura:attribute name="Accs1" type="Account[]" />
+  <aura:attribute name="Accsv" type="Account" default="{'Name': 'Dhairya'}" />
+  <aura:attribute name="Accs2" type="Account[]" />
   <aura:attribute name="Cont" type="Contact[]" />
 
-  <aura:handler name="init" action="{!c.getAllAccounts}" value="{!this}" />
+  <!-- <aura:handler name="init" action="{!c.getAllAccounts}" value="{!this}" /> -->
 
   <div style="display: flex; justify-content: space-evenly">
     <div class="box">
-      <lightning:select value="{!v.Accs[0]}" label="Select Accounts" aura:id="select">
-        <aura:iteration items="{!v.Accs}" var="a">
-          <option value="{!a.Name}" label="{!a.Name}" />
-        </aura:iteration>
-      </lightning:select>
+      <lightning:input
+        aura:id="input1"
+        label="Search Acc"
+        onchange="{!c.SearchAcc}"
+        placeholder="Search.."
+      />
+      <aura:iteration items="{!v.Accs1}" var="a">
+        <div draggable="true">
+          {!a.Name}
+        </div>
+      </aura:iteration>
     </div>
-    
+
     <div class="box">
-      <lightning:select value="{!v.Accs[0]}" label="Select Accounts">
-        <aura:iteration items="{!v.Accs}" var="a">
-          <option value="{!a.Name}" label="{!a.Name}" />
-        </aura:iteration>
-      </lightning:select>
+      <lightning:input aura:id="input2" label="Search Acc" />
     </div>
   </div>
 </aura:component>
