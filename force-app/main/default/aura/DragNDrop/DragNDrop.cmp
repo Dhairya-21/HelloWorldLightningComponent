@@ -3,29 +3,63 @@
   controller="DragNDropClass"
 >
   <aura:attribute name="Accs1" type="Account[]" />
-  <aura:attribute name="Accsv" type="Account" default="{'Name': 'Dhairya'}" />
   <aura:attribute name="Accs2" type="Account[]" />
   <aura:attribute name="Cont" type="Contact[]" />
 
   <!-- <aura:handler name="init" action="{!c.getAllAccounts}" value="{!this}" /> -->
 
-  <div style="display: flex; justify-content: space-evenly">
+  <div
+    style="display: flex; justify-content: space-evenly"
+    class="slds-box slds-theme_default"
+  >
     <div class="box">
       <lightning:input
         aura:id="input1"
-        label="Search Acc"
-        onchange="{!c.SearchAcc}"
+        label="Search Account"
+        onchange="{!c.SearchAcc1}"
         placeholder="Search.."
       />
-      <aura:iteration items="{!v.Accs1}" var="a">
-        <div draggable="true">
-          {!a.Name}
-        </div>
-      </aura:iteration>
+      <table
+        class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-table_bordered"
+      >
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <aura:iteration items="{!v.Accs1}" var="a">
+            <tr>
+              <td onclick="{!c.alertme}">{!a.Name}</td>
+            </tr>
+          </aura:iteration>
+        </tbody>
+      </table>
     </div>
 
     <div class="box">
-      <lightning:input aura:id="input2" label="Search Acc" />
+      <lightning:input
+        aura:id="input2"
+        label="Search Account"
+        onchange="{!c.SearchAcc2}"
+        placeholder="Search.."
+      />
+      <table
+        class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-table_bordered"
+      >
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <aura:iteration items="{!v.Accs2}" var="a">
+            <tr>
+              <td>{!a.Name}</td>
+            </tr>
+          </aura:iteration>
+        </tbody>
+      </table>
     </div>
   </div>
 </aura:component>

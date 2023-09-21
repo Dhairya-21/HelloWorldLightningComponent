@@ -37,15 +37,8 @@
     var search = component.find("input1").get("v.value");
     var action = component.get("c.getByName");
     var size = component.get("v.Tsize");
-    var limitC = 0;
-    if (size > component.get("v.Psize")) {
-      limitC = component.get("v.Psize");
-    } else {
-      limitC = Number(size);
-    }
     action.setParams({
       searchKey: search,
-      limitC: limitC
     });
     action.setCallback(this, function (response) {
       var state = response.getState();
@@ -53,7 +46,7 @@
         component.set("v.PList", response.getReturnValue());
         component.set("v.Tsize", component.get("v.Cont").length);
         var Pagination = [];
-        for (var i = 0; i < limitC; i++) {
+        for (var i = 0; i < size; i++) {
           Pagination.push(response.getReturnValue()[i]);
         }
         component.set("v.PList", Pagination);

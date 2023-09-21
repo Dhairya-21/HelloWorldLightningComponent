@@ -6,10 +6,12 @@
     type="String[]"
     default="['Name', 'Email', 'Phone', 'AccountId', 'Title']"
   />
-  <lightning:notificationsLibrary aura:id="tmsg" />
-  <lightning:recordForm
-    objectApiName="Contact"
-    fields="{!v.fields}"
-    onsubmit="{!c.toast}"
-  />
+  <div class="slds-box slds-theme_default">
+    <lightning:notificationsLibrary aura:id="tmsg" />
+    <lightning:recordForm
+      objectApiName="Contact"
+      fields="{!v.fields}"
+      onsubmit="{!c.toast}"
+    />
+  </div>
 </aura:component>
