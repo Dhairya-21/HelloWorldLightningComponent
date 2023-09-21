@@ -1,0 +1,68 @@
+<aura:component
+  implements="flexipage:availableForAllPageTypes"
+  controller="DragAndDropClass"
+>
+  <aura:attribute name="Acc1" type="List" />
+  <aura:attribute name="Acc2" type="List" />
+  <!-- <aura:attribute name="Cont" type="Contact[]" /> -->
+
+  <!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> -->
+
+  <div
+    class="slds-box slds-theme_default"
+    style="display: flex; justify-content: space-evenly"
+  >
+    <div>
+      <lightning:input
+        aura:id="input1"
+        label="Search Account"
+        onchange="{!c.SearchAcc1}"
+        placeholder="Search.."
+      />
+      <table
+        class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-table_bordered"
+      >
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contacts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <aura:iteration items="{!v.Acc1}" var="a" indexVar="key">
+            <tr>
+              <td onclick="{!c.render1}">{!a.key}</td>
+              <td>{!a.value}</td>
+            </tr>
+          </aura:iteration>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <lightning:input
+        aura:id="input2"
+        label="Search Account"
+        onchange="{!c.SearchAcc2}"
+        placeholder="Search.."
+      />
+      <table
+        class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-table_bordered"
+      >
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contacts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <aura:iteration items="{!v.Acc2}" var="a" indexVar="key">
+            <tr>
+              <td onclick="{!c.render2}">{!a.key}</td>
+              <td>{!a.value}</td>
+            </tr>
+          </aura:iteration>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</aura:component>

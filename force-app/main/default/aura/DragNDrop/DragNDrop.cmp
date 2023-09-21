@@ -3,8 +3,10 @@
   controller="DragNDropClass"
 >
   <aura:attribute name="Accs1" type="Account[]" />
+  <aura:attribute name="Cont1" type="Contact[]" />
+
   <aura:attribute name="Accs2" type="Account[]" />
-  <aura:attribute name="Cont" type="Contact[]" />
+  <aura:attribute name="Cont2" type="Contact[]" />
 
   <!-- <aura:handler name="init" action="{!c.getAllAccounts}" value="{!this}" /> -->
 
@@ -19,6 +21,7 @@
         onchange="{!c.SearchAcc1}"
         placeholder="Search.."
       />
+
       <table
         class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-table_bordered"
       >
@@ -30,7 +33,24 @@
         <tbody>
           <aura:iteration items="{!v.Accs1}" var="a">
             <tr>
-              <td onclick="{!c.alertme}">{!a.Name}</td>
+              <td onclick="{!c.showCon1}">{!a.Name}</td>
+            </tr>
+          </aura:iteration>
+        </tbody>
+      </table>
+
+      <table
+        class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-table_bordered"
+      >
+        <thead>
+          <tr>
+            <td>Last Name</td>
+          </tr>
+        </thead>
+        <tbody>
+          <aura:iteration items="{!v.Cont1}" var="a">
+            <tr>
+              <td draggable="true">{!a.LastName}</td>
             </tr>
           </aura:iteration>
         </tbody>
@@ -44,6 +64,7 @@
         onchange="{!c.SearchAcc2}"
         placeholder="Search.."
       />
+
       <table
         class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-table_bordered"
       >
@@ -56,6 +77,23 @@
           <aura:iteration items="{!v.Accs2}" var="a">
             <tr>
               <td>{!a.Name}</td>
+            </tr>
+          </aura:iteration>
+        </tbody>
+      </table>
+
+      <table
+        class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-table_bordered"
+      >
+        <thead>
+          <tr>
+            <td>Last Name</td>
+          </tr>
+        </thead>
+        <tbody>
+          <aura:iteration items="{!v.Cont2}" var="a">
+            <tr>
+              <td draggable="true">{!a.LastName}</td>
             </tr>
           </aura:iteration>
         </tbody>

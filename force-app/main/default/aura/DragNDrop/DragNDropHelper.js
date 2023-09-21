@@ -10,5 +10,20 @@
         }
     });
     $A.enqueueAction(action);
+  },
+
+  ShowConts: function(component, Acc){
+    var action = component.get("c.getContacts");
+    var accId = Acc;
+    action.setParams({
+      AccID : accId
+    });
+    action.setCallback(this, function(response){
+      var state = response.getState();
+      if(state = "SUCCESS"){
+        component.set("v.Cont1", response.getReturnValue());
+      }
+    });
+    $A.enqueueAction(action);
   }
 });
