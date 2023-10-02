@@ -1,0 +1,35 @@
+<aura:component implements="flexipage:availableforallpagetypes" controller="DisplayAccs">
+    <aura:attribute name="Accounts" type="Account[]"/>
+    <aura:handler name="init" action="{!c.init}" value="{!this}"/>
+    <div class="slds-box slds-theme_default">
+        <div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Account Name</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <aura:iteration items="{!v.Accounts}" var="a">
+                    <tr>
+                        <td onclick="{!c.dispAcc}">{!a.Name}</td>
+                        <td>{!a.Phone}</td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Opportiunity Name</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    </div>
+</aura:component>	

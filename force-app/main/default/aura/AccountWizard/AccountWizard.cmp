@@ -1,0 +1,85 @@
+<aura:component
+  implements="flexipage:availableForAllPageTypes"
+  controller="AccountWizardClass"
+>
+  <aura:attribute name="SelStep" type="Integer" default="1" />
+  <aura:attribute name="Acc" type="Account" />
+  <aura:attribute name="Cont" type="Contact" />
+
+  <div class="slds-box slds-theme_default">
+    <lightning:progressIndicator currentStep="{!v.SelStep}" type="base">
+      <lightning:progressStep
+        label="Create Account"
+        value="1"
+        onclick="{!c.SelectStep1}"
+      />
+      <lightning:progressStep
+        label="Create Contact"
+        value="2"
+        onclick="{!c.SelectStep2}"
+      />
+      <lightning:progressStep
+        label="Create Event"
+        value="3"
+        onclick="{!c.SelectStep3}"
+      />
+    </lightning:progressIndicator>
+
+    <div class="{!v.SelStep == 1 ? 'slds-show' : 'slds-hide'}">
+      <lightning:input label="Account Name" aura:id="AName" required="true" />
+      <lightning:input label="Phone" aura:id="APhone" />
+      <lightning:select value="--None--" label="Rating" aura:id="rating">
+        <option label="--None--" />
+        <option label="Hot" value="Hot" />
+        <option label="Warm" value="Warm" />
+        <option label="Cold" value="Cold" />
+      </lightning:select>
+    </div>
+
+    <div class="{!v.SelStep == 2 ? 'slds-show' : 'slds-hide'}">
+      {!v.Acc.Id} {!v.Acc.Name}
+      <lightning:input label="Last Name" aura:id="CName" required="true" />
+      <lightning:input label="Email" aura:id="Email" />
+      <lightning:input label="Phone" aura:id="CPhone" />
+    </div>
+
+    <div class="{!v.SelStep == 3 ? 'slds-show' : 'slds-hide'}">
+      <lightning:select value="--None--" label="Subject">
+        <option label="--None--" />
+        <option label="Call" value="Call" />
+        <option label="Email" value="Email" />
+        <option label="Meeting" value="Meeting" />
+        <option label="Send letter/Quote" value="Send letter/Quote" />
+        <option label="Other" value="Other" />
+      </lightning:select>
+
+      <div style="display: flex; justify-content: space-evenly; margin: 10px">
+        <div>
+          <b>Start</b>
+          <lightning:input type="Datetime" name="Start" />
+        </div>
+        <div>
+          <b>End</b>
+          <lightning:input type="Datetime" name="End" />
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <lightning:button
+        label="Previous"
+        class="btns"
+        disabled="{!v.SelStep == 1 ? 'true' : 'false'}"
+        onclick="{!c.PrevStep}"
+        variant="destructive"
+      />
+      <lightning:button
+        aura:id="NextBtn"
+        label="Next"
+        variant="Brand"
+        class="btns"
+        onclick="{!c.NextStep}"
+      />
+    </div>
+  </div>
+</aura:component>

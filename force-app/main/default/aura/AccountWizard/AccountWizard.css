@@ -1,0 +1,7 @@
+.THIS .btns {
+    margin: 10px 5px;
+}
+.THIS .buttons{
+    display: flex;
+    justify-content: end;
+}

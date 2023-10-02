@@ -1,0 +1,10 @@
+<aura:component implements="flexipage:AvailableforAllPageTypes">
+    <div class="slds-box slds-theme_default">
+        <lightning:input label="Image Url" placeholder="Enter image URL"/>
+        <lightning:input type="color" label="Background color" />
+        <lightning:textarea label="Description" placeholder="Enter caption for the image" />
+        <lightning:input type="number" label="Font size" placeholder="Enter the font size"/>
+        <lightning:input type="color" label="Font color" />
+        <lightning:button label="Search" variant="Brand" class="btn"/>
+    </div>
+</aura:component>	
