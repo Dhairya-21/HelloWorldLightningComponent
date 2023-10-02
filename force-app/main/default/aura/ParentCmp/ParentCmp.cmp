@@ -1,0 +1,14 @@
+<aura:component implements="flexipage:availableforallpagetypes">
+  <aura:attribute name="File1" type="String" default="1" />
+  <div class="slds-box slds-theme_default">
+    <lightning:fileUpload
+      name="FU"
+      multiple="false"
+      accept=".png"
+      onuploadfinished="{!c.Selected}"
+    />
+    <!-- <div class="{!v.file1 == '1' ? 'slds-hide' : 'slds-show'}">
+            <lightning:fileCard fileId="{!v.file1}" description="Hello"/>
+        </div> -->
+  </div>
+</aura:component>

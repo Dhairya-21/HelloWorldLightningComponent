@@ -1,0 +1,9 @@
+<aura:component implements="flexipage:availableforallpagetypes">
+  <aura:attribute name="file2" type="String" default="1"/>
+  <aura:handler event="c:PassVal" action="{!c.init}" />
+  <div class="slds-box slds-theme_default">
+    <div class="{!v.file2 == '1' ? 'slds-hide' : 'slds-show'}">
+      <lightning:fileCard fileId="{!v.file2}" description="File" />
+    </div>
+  </div>
+</aura:component>

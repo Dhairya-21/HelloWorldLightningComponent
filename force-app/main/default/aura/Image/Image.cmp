@@ -1,10 +1,23 @@
 <aura:component implements="flexipage:AvailableforAllPageTypes">
+    <aura:attribute name="url" type="String" />
+    <aura:attribute name="bcolor" type="String" default="#FFFFFF"/>
+    <aura:attribute name="desc" type="String" />
+    <aura:attribute name="size" type="String" default="12"/>
+    <aura:attribute name="fcolor" type="String" default="#000000"/>
+
+    <aura:handler name="init" action="{!c.init}" value="{!this}" />
     <div class="slds-box slds-theme_default">
-        <lightning:input label="Image Url" placeholder="Enter image URL"/>
-        <lightning:input type="color" label="Background color" />
-        <lightning:textarea label="Description" placeholder="Enter caption for the image" />
-        <lightning:input type="number" label="Font size" placeholder="Enter the font size"/>
-        <lightning:input type="color" label="Font color" />
-        <lightning:button label="Search" variant="Brand" class="btn"/>
+        <div>
+            <lightning:input label="Image Url" placeholder="Enter image URL" value="{!v.url}"/>
+            <lightning:input type="color" label="Background color" value="{!v.bcolor}"/>
+            <lightning:textarea label="Description" placeholder="Enter caption for the image" value="{!v.desc}" />
+            <lightning:input label="Font size" placeholder="Enter the font size" value="{!v.size}"/>
+            <lightning:input type="color" label="Font color" value="{!v.fcolor}"/>
+            <lightning:button label="Search" variant="Brand" onclick="{!c.Showimg}" class="btn"/>
+        </div>
+        <div aura:id="Imgdiv" class="Imgdiv">
+            <img src="{!v.url}" />
+            <p aura:id="description">{!v.desc}</p>
+        </div>
     </div>
 </aura:component>	
