@@ -3,11 +3,13 @@
   controller="AccountWizardClass"
 >
   <aura:attribute name="SelStep" type="Integer" default="1" />
+  <aura:attribute name="SelStepS" type="String" default="1" />
   <aura:attribute name="Acc" type="Account" />
   <aura:attribute name="Cont" type="Contact" />
+  <aura:handler event="init" action="{!this}" value="{!c.init}"/>
 
   <div class="slds-box slds-theme_default">
-    <lightning:progressIndicator currentStep="{!v.SelStep}" type="base">
+    <lightning:progressIndicator currentStep="3" type="base">
       <lightning:progressStep
         label="Create Account"
         value="1"
@@ -37,14 +39,13 @@
     </div>
 
     <div class="{!v.SelStep == 2 ? 'slds-show' : 'slds-hide'}">
-      {!v.Acc.Id} {!v.Acc.Name}
       <lightning:input label="Last Name" aura:id="CName" required="true" />
       <lightning:input label="Email" aura:id="Email" />
       <lightning:input label="Phone" aura:id="CPhone" />
     </div>
 
     <div class="{!v.SelStep == 3 ? 'slds-show' : 'slds-hide'}">
-      <lightning:select value="--None--" label="Subject">
+      <lightning:select value="--None--" label="Subject" aura:id="Subject">
         <option label="--None--" />
         <option label="Call" value="Call" />
         <option label="Email" value="Email" />
@@ -56,11 +57,11 @@
       <div style="display: flex; justify-content: space-evenly; margin: 10px">
         <div>
           <b>Start</b>
-          <lightning:input type="Datetime" name="Start" />
+          <lightning:input type="Datetime" name="Start" aura:id="start"/>
         </div>
         <div>
           <b>End</b>
-          <lightning:input type="Datetime" name="End" />
+          <lightning:input type="Datetime" name="End" aura:id="endt"/>
         </div>
       </div>
     </div>

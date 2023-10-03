@@ -23,7 +23,6 @@
         phone: component.find("APhone").get("v.value"),
         rating: component.find("rating").get("v.value")
       });
-      console.log("Problem2");
       action.setCallback(this, function (response) {
         var state = response.getState();
         if ((state = "SUCCESS")) {
@@ -39,8 +38,9 @@
       var action = component.get("c.CreateCon");
       action.setParams({
         name: component.find("CName").get("v.value"),
-        rating: component.find("Email").get("v.value"),
-        phone: component.find("CPhone").get("v.value")
+        email: component.find("Email").get("v.value"),
+        phone: component.find("CPhone").get("v.value"),
+        accId: component.get("v.Acc").Id
       });
       action.setCallback(this, function (response) {
         var state = response.getState();
@@ -50,9 +50,30 @@
       });
       $A.enqueueAction(action);
     } else if (step == 3) {
-      console.log("finish");
+      var action = component.get("c.CreateEvent");
+      action.setParams({
+        subject: component.find("Subject").get("v.value"),
+        // start: component.find("start").get("v.value"),
+        start: new Date(),
+        // entd: component.find("endt").get("v.value"),
+        entd: new Date(),
+        accId: component.get("v.Acc").Id
+      });
+      action.setCallback(this, function (response) {
+        var state = response.getState();
+        if ((state == "SUCCESS")) {
+          console.log('event created');
+        }
+        else {
+          console.log('failed');
+        }
+      });
+      $A.enqueueAction(action);
+      console.log(step);
+      console.log(component.find("Subject").get("v.value"));
+      console.log(component.find("start").get("v.value"));
+      console.log(component.find("endt").get("v.value"));
     }
-    // console.log(step);
   },
 
   PrevStep: function (component) {
