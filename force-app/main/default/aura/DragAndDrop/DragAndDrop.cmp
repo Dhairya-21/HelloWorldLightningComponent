@@ -3,8 +3,16 @@
   controller="DragAndDropClass"
 >
   <aura:attribute name="Acc1" type="List" />
+  <aura:attribute name="AccName1" type="String" />
+  <aura:attribute name="Cont1" type="Contact[]" />
+  <aura:attribute name="hide1" type="Integer" default="1" />
+
   <aura:attribute name="Acc2" type="List" />
-  <!-- <aura:attribute name="Cont" type="Contact[]" /> -->
+  <aura:attribute name="AccName2" type="String" />
+  <aura:attribute name="Cont2" type="Contact[]" />
+  <aura:attribute name="hide2" type="Integer" default="1" />
+
+  <aura:attribute name="Tcon" type="String" />
 
   <!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> -->
 
@@ -12,57 +20,114 @@
     class="slds-box slds-theme_default"
     style="display: flex; justify-content: space-evenly"
   >
-    <div>
-      <lightning:input
-        aura:id="input1"
-        label="Search Account"
-        onchange="{!c.SearchAcc1}"
-        placeholder="Search.."
-      />
-      <table
-        class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-table_bordered"
-      >
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Contacts</th>
-          </tr>
-        </thead>
-        <tbody>
-          <aura:iteration items="{!v.Acc1}" var="a" indexVar="key">
+    <!-- First Account Section -->
+    <div class="{!v.hide1 == 1 ? 'slds-show' : 'slds-hide'}">
+      <div class="slds-box slds-theme_default">
+        <lightning:input
+          aura:id="input1"
+          label="Search Account"
+          onchange="{!c.SearchAcc1}"
+          placeholder="Search.."
+        />
+        <table
+          class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-table_bordered"
+        >
+          <thead>
             <tr>
-              <td onclick="{!c.render1}">{!a.key}</td>
-              <td>{!a.value}</td>
+              <th>Name</th>
+              <th>Contacts</th>
             </tr>
-          </aura:iteration>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <aura:iteration items="{!v.Acc1}" var="a" indexVar="key">
+              <tr>
+                <td onclick="{!c.render1}" id="{!a.key}">{!a.key}</td>
+                <td>{!a.value}</td>
+              </tr>
+            </aura:iteration>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div>
-      <lightning:input
+    <!-- First Contact Section -->
+    <div class="{!v.hide1 == 1 ? 'slds-hide' : 'slds-show'}">
+      <div class="slds-box slds-theme_default">
+        <p ondrop="{!c.onDrop}" ondragover="{!c.dOver}" id="{!v.AccName1}">{!v.AccName1}</p>
+        <table
+        class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-table_bordered"
+        >
+          <thead>
+            <tr>
+              <td>Name</td>
+            </tr>
+          </thead>
+          <tbody>
+            <aura:iteration items="{!v.Cont1}" var="a">
+              <tr>
+                <td draggable="true" ondragstart="{!c.dStart}" id="{!a.Id}">
+                  {!a.FirstName} {!a.LastName}
+                </td>
+              </tr>
+            </aura:iteration>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Second Account Section -->
+    <div class="{!v.hide2 == 1 ? 'slds-show' : 'slds-hide'}">
+      <div class="slds-box slds-theme_default">
+        <lightning:input
         aura:id="input2"
         label="Search Account"
         onchange="{!c.SearchAcc2}"
-        placeholder="Search.."
-      />
-      <table
-        class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-table_bordered"
-      >
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Contacts</th>
-          </tr>
-        </thead>
-        <tbody>
-          <aura:iteration items="{!v.Acc2}" var="a" indexVar="key">
+          placeholder="Search.."
+          />
+        <table
+          class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-table_bordered"
+        >
+          <thead>
             <tr>
-              <td onclick="{!c.render2}">{!a.key}</td>
-              <td>{!a.value}</td>
+              <th>Name</th>
+              <th>Contacts</th>
             </tr>
-          </aura:iteration>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <aura:iteration items="{!v.Acc2}" var="a" indexVar="key">
+              <tr>
+                <td onclick="{!c.render2}" id="{!a.key}">{!a.key}</td>
+                <td>{!a.value}</td>
+              </tr>
+            </aura:iteration>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Second Contact Section -->
+    <div
+    class="{!v.hide2 == 1 ? 'slds-hide' : 'slds-show'}"
+    >
+    <div class="slds-box slds-theme_default">
+      <p ondrop="{!c.onDrop}" ondragover="{!c.dOver}" id="{!v.AccName2}">{!v.AccName2}</p>
+      <table
+          class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-table_bordered"
+        >
+          <thead>
+            <tr>
+              <td>Name</td>
+            </tr>
+          </thead>
+          <tbody>
+            <aura:iteration items="{!v.Cont2}" var="a">
+              <tr>
+                <td draggable="true" ondragstart="{!c.dStart}" id="{!a.Id}">
+                  {!a.FirstName} {!a.LastName}
+                </td>
+              </tr>
+            </aura:iteration>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </aura:component>
