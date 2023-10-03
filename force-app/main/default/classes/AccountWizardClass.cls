@@ -19,12 +19,15 @@ public static Contact CreateCon(String name, String email, String phone, String 
     return con;
     }
     @AuraEnabled
-    public static Event CreateEvent(String subject, Datetime start , Datetime endt, String accId){
+    public static Event CreateEvent(String subject, String start , String endt, String accId){
+        Datetime startTime = Datetime.valueOf(JSON.deserialize('"' + start + '"', Datetime.class));
+        Datetime endTime = Datetime.valueOf(JSON.deserialize('"' + endt + '"', Datetime.class));
         Event e = new Event();
+
         e.Subject = subject;
-        e.StartDateTime = start;
-        e.ActivityDateTime = start;
-        e.EndDateTime = endt ;
+        e.StartDateTime = startTime;
+        e.ActivityDateTime = startTime;
+        e.EndDateTime = endTime ;
         e.WhatId = accId;
         // e.WhoId = accId;
         insert e;

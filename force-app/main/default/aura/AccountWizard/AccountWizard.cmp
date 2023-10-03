@@ -3,67 +3,94 @@
   controller="AccountWizardClass"
 >
   <aura:attribute name="SelStep" type="Integer" default="1" />
-  <aura:attribute name="SelStepS" type="String" default="1" />
+  <!-- <aura:attribute name="SelStepName" type="String[]" /> -->
   <aura:attribute name="Acc" type="Account" />
   <aura:attribute name="Cont" type="Contact" />
-  <aura:handler event="init" action="{!this}" value="{!c.init}"/>
 
   <div class="slds-box slds-theme_default">
-    <lightning:progressIndicator currentStep="3" type="base">
-      <lightning:progressStep
-        label="Create Account"
-        value="1"
-        onclick="{!c.SelectStep1}"
-      />
-      <lightning:progressStep
-        label="Create Contact"
-        value="2"
-        onclick="{!c.SelectStep2}"
-      />
-      <lightning:progressStep
-        label="Create Event"
-        value="3"
-        onclick="{!c.SelectStep3}"
-      />
-    </lightning:progressIndicator>
+    <div class="slds-box">
+      <lightning:notificationsLibrary aura:id="tmsg" />
+      <lightning:progressBar value="{!v.SelStep * 33.3}" variant="circular" />
+      <!-- <lightning:progressIndicator currentStep="{!v.SelStep}" >
+        <lightning:progressStep
+          label="Create Account"
+          value="1"
+          onclick="{!c.SelectStep1}"
+          />
+          <lightning:progressStep
+          label="Create Contact"
+          value="2"
+          onclick="{!c.SelectStep2}"
+          />
+          <lightning:progressStep
+          label="Create Event"
+          value="3"
+          onclick="{!c.SelectStep3}"
+        />
+      </lightning:progressIndicator> -->
+    </div>
 
     <div class="{!v.SelStep == 1 ? 'slds-show' : 'slds-hide'}">
-      <lightning:input label="Account Name" aura:id="AName" required="true" />
-      <lightning:input label="Phone" aura:id="APhone" />
-      <lightning:select value="--None--" label="Rating" aura:id="rating">
-        <option label="--None--" />
-        <option label="Hot" value="Hot" />
-        <option label="Warm" value="Warm" />
-        <option label="Cold" value="Cold" />
-      </lightning:select>
+      <lightning:card title="Create Account">
+        <div class="slds-box">
+          <lightning:input
+            label="Account Name"
+            aura:id="AName"
+            required="true"
+          />
+          <lightning:input label="Phone" aura:id="APhone" />
+          <lightning:select value="--None--" label="Rating" aura:id="rating">
+            <option label="--None--" />
+            <option label="Hot" value="Hot" />
+            <option label="Warm" value="Warm" />
+            <option label="Cold" value="Cold" />
+          </lightning:select>
+        </div>
+      </lightning:card>
     </div>
 
     <div class="{!v.SelStep == 2 ? 'slds-show' : 'slds-hide'}">
-      <lightning:input label="Last Name" aura:id="CName" required="true" />
-      <lightning:input label="Email" aura:id="Email" />
-      <lightning:input label="Phone" aura:id="CPhone" />
+      <lightning:card title="Create Contact For the Account">
+        <div class="slds-box">
+          <lightning:input label="Last Name" aura:id="CName" required="true" />
+          <lightning:input label="Email" aura:id="Email" />
+          <lightning:input label="Phone" aura:id="CPhone" />
+        </div>
+      </lightning:card>
     </div>
 
     <div class="{!v.SelStep == 3 ? 'slds-show' : 'slds-hide'}">
-      <lightning:select value="--None--" label="Subject" aura:id="Subject">
-        <option label="--None--" />
-        <option label="Call" value="Call" />
-        <option label="Email" value="Email" />
-        <option label="Meeting" value="Meeting" />
-        <option label="Send letter/Quote" value="Send letter/Quote" />
-        <option label="Other" value="Other" />
-      </lightning:select>
+      <lightning:card title="Create Event For the Account">
+        <div class="slds-box">
+          <lightning:select value="--None--" label="Subject" aura:id="Subject">
+            <option label="--None--" />
+            <option label="Call" value="Call" />
+            <option label="Email" value="Email" />
+            <option label="Meeting" value="Meeting" />
+            <option label="Send letter/Quote" value="Send letter/Quote" />
+            <option label="Other" value="Other" />
+          </lightning:select>
+        </div>
 
-      <div style="display: flex; justify-content: space-evenly; margin: 10px">
-        <div>
-          <b>Start</b>
-          <lightning:input type="Datetime" name="Start" aura:id="start"/>
+        <div
+          style="
+            display: flex;
+            justify-content: space-evenly;
+            margin: 10px;
+            gap: 10px;
+            padding: 10px;
+          "
+        >
+          <div>
+            <b>Start</b>
+            <lightning:input type="Datetime" name="Start" aura:id="start" />
+          </div>
+          <div>
+            <b>End</b>
+            <lightning:input type="Datetime" name="End" aura:id="endt" />
+          </div>
         </div>
-        <div>
-          <b>End</b>
-          <lightning:input type="Datetime" name="End" aura:id="endt"/>
-        </div>
-      </div>
+      </lightning:card>
     </div>
 
     <div class="buttons">
