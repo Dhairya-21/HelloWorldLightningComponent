@@ -7,6 +7,7 @@
       accept=".png"
       onuploadfinished="{!c.Selected}"
     />
+    <c:ChildCmp ></c:ChildCmp>
     <!-- <div class="{!v.file1 == '1' ? 'slds-hide' : 'slds-show'}">
             <lightning:fileCard fileId="{!v.file1}" description="Hello"/>
         </div> -->

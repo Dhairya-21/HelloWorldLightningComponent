@@ -1,0 +1,11 @@
+<template>
+  <div class="slds-box slds-theme_default">
+    <lightning-file-upload
+      accept=".png"
+      onuploadfinished={passFile}
+      multiple="false"
+      name="file"
+    ></lightning-file-upload>
+    <c-child-file file={file1}></c-child-file>
+  </div>
+</template>
