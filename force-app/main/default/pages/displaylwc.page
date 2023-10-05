@@ -1,0 +1,27 @@
+<apex:page>
+    <button onclick="publishmsg()">Publish</button>
+    <button onclick="subscribemsg()">Subscribe</button>
+    <button onclick="o()">Console</button>
+    
+    <script src="/soap/ajax/20.0/connection.js"></script>
+    <script src="/soap/ajax/20.0/apex.js"></script>
+
+    <script type="text/javascript">
+        function o() {
+            console.log(100);
+        }
+        function publishmsg() {
+            var msgchl = '{!$MessageChannel.msgchl__c}';
+            var payload = { 'message': 'Hello World' };
+            console.log(payload);
+            sforce.one.publish(msgchl, payload);
+        }
+        function subscribemsg() {
+            var msgchl = '{!$MessageChannel.msgchl__c}';
+            sforce.one.subscribe(msgchl, function (msg) {
+                console.log(msg);
+            });
+        }
+    </script>
+
+</apex:page>

@@ -1,0 +1,16 @@
+<template>
+  <div class="slds-box slds-theme_default">
+    <div>
+      <lightning-file-upload
+        label="Photo Upload"
+        multiple="true"
+        accept=".png"
+        onuploadfinished={file1}
+      ></lightning-file-upload>
+    </div>
+    <lightning-button onclick={clickit} label="Click"></lightning-button>
+    <div>
+      <p>Display Files</p>
+    </div>
+  </div>
+</template>

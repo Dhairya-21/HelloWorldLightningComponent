@@ -10,9 +10,9 @@
        <description>message To Send</description>
    </lightningMessageFields>
 
-   <lightningMessageFields>
+   <!-- <lightningMessageFields>
        <fieldName>sourceSystem</fieldName>
        <description>My source?</description>
-   </lightningMessageFields>
+   </lightningMessageFields> -->
 
 </LightningMessageChannel>

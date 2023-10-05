@@ -1,6 +1,11 @@
 import { LightningElement, api } from "lwc";
-import { subscribe, unsubscribe, APPLICATION_SCOPE, MessageContext, publish } from "lightning/messageService";
-// import  { * } from "lightning/messageService";
+// import {
+//   subscribe,
+//   unsubscribe,
+//   APPLICATION_SCOPE,
+//   MessageContext,
+//   publish
+// } from "lightning/messageService";
 
 export default class ParentFile extends LightningElement {
   // @api passFile();
@@ -8,7 +13,7 @@ export default class ParentFile extends LightningElement {
   // connectedCallback(){
   //     this.passFile();
   // }
-  
+
   passFile() {
     console.log(event.detail.files[0].documentId);
     this.file1 = event.detail.files[0].documentId;
