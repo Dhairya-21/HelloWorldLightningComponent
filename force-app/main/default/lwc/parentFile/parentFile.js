@@ -18,6 +18,6 @@ export default class ParentFile extends LightningElement {
     console.log(event.detail.files[0].documentId);
     this.file1 = event.detail.files[0].documentId;
     // this.template.querySelector('c-child-file').getFile(event.detail.files[0].documentId);
-    // this.template.querySelector('c-child-File').getFile(20);
+
   }
 }

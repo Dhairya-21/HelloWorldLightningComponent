@@ -5,12 +5,20 @@
         label="Photo Upload"
         multiple="true"
         accept=".png"
-        onuploadfinished={file1}
+        onuploadfinished={getImage}
       ></lightning-file-upload>
     </div>
-    <lightning-button onclick={clickit} label="Click"></lightning-button>
-    <div>
-      <p>Display Files</p>
+    <!-- <lightning-button onclick={getImage} label="Click"></lightning-button> -->
+    <div id="dfiles" class="slds-box slds-theme_default">
+      <div style="display: flex; justify-content:space-between; align-items:center">
+
+        <lightning-button label="Previous" onclick={previous}></lightning-button>
+          <b>Page {start} of {total}</b>
+          <lightning-button label="Next" onclick={next}></lightning-button>
+        </div>
+        <div>
+          <c-file-url></c-file-url>
+        </div>
     </div>
   </div>
 </template>

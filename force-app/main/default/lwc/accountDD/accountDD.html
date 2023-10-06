@@ -1,0 +1,12 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <div class="slds-box slds-theme_default">
+        Accounts: 
+        <select class="slds-select" style="width: 200px;" onchange={showCon}>
+            <template for:each={wiredData.data} for:item="acc" >
+                <option key={acc.Id} value={acc.Id} >{acc.Name}</option>
+            </template>
+        </lightning-input>
+    </select>
+    </div>    
+</template>

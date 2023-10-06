@@ -31,20 +31,6 @@
       }
     });
     $A.enqueueAction(action);
-  }
+  },
 
-  //   SetCount: function (component, Acc) {
-  //     var count = component.get("c.getContactsValue");
-  //     var AccId = component.find(Acc);
-  //     count.setParams({
-  //       AccId: AccId
-  //     });
-  //     count.setCallback(this, function (response) {
-  //       var state = response.getState();
-  //       if (state === "SUCCESS") {
-  //         component.set("v.count", response.getReturnValue());
-  //       }
-  //     });
-  //     $A.enqueueAction(count);
-  //   }
 });

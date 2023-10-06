@@ -15,29 +15,27 @@
   render1: function (component, event, helper) {
     // var id1 = component
     var i = event.target.id;
-    component.set('v.AccName1', i);
+    component.set("v.AccName1", i);
     helper.SearchCont(component, i, 1);
     component.set("v.hide1", 2);
   },
   render2: function (component, event, helper) {
     var i = event.target.id;
-    component.set('v.AccName2', i);
+    component.set("v.AccName2", i);
     helper.SearchCont(component, i, 2);
     component.set("v.hide2", 2);
   },
-  
+
   // Draggable contact methods
   dStart: function (component, event, helper) {
     var i = event.target.id;
+
     component.set("v.Tcon", i);
-    console.log(component.get("v.Tcon"));
+    event.dataTransfer.setData("Text", event.target.id);
   },
 
-  ondrop: function (component, event, helper) {
+  onDrop: function (component, event, helper) {
     event.preventDefault();
-  },
-
-  dOver: function (component, event, helper) {
     var FAcc = event.target.id;
     var TCon = component.get("v.Tcon");
     var action = component.get("c.TransferCon");
@@ -52,5 +50,14 @@
       }
     });
     $A.enqueueAction(action);
+    var data = event.dataTransfer.getData("Text");
+    var tr = document.createElement('tr');
+    tr.appendChild(document.getElementById(data));
+    event.target.parentElement.lastElementChild.appendChild(tr);
+    
+  },
+
+  dOver: function (component, event, helper) {
+    event.preventDefault();
   }
 });

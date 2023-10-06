@@ -6,6 +6,7 @@ export default class ChildFile extends LightningElement {
   //   getFile(str) {
   //     this.file = str;
   //   }
+  
   @wire(getRecord, { recordId: "$file", fields: [IMAGE_URL_FIELD] })
   contentDocImage;
 
