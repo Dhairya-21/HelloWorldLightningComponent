@@ -1,0 +1,73 @@
+<template>
+  <div class="slds-box slds-theme_default">
+    <div
+      style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px"
+    >
+      <lightning-button
+        label="Previous"
+        onclick={previous}
+        disabled={prev}
+        variant="destructive"
+      ></lightning-button>
+      <b> Stage {pg} </b>
+      <lightning-button
+        label="Next"
+        onclick={next}
+        variant="brand"
+      ></lightning-button>
+    </div>
+
+    <template if:true={st1}>
+      <div class="slds-box slds-theme_default">
+        Object:
+        <select
+          style="width: 200px"
+          onchange={handleOnChange}
+          class="slds-select"
+        >
+          <option value="--None--">--None--</option>
+          <option value="Account">Account</option>
+          <option value="Contact">Contact</option>
+          <option value="Lead">Lead</option>
+        </select>
+        <lightning-card title={val}>
+          <template for:each={rec} for:item="r" for:index="i">
+            <lightning-input
+              type="checkbox"
+              label={r.Name}
+              key={r.Id}
+              value={r.Id}
+              onchange={showCng}
+            ></lightning-input>
+          </template>
+        </lightning-card>
+      </div>
+    </template>
+
+    <template if:true={st2}>
+      <lightning-card title="Draft an Email">
+        <div class="slds-box slds-theme_default">
+          <b>Recipients:</b>
+          <template for:each={name} for:item="i">
+            <lightning-pill label={i} key={i} onremove={rm}></lightning-pill>
+          </template>
+          <lightning-input label="Subject: " onchange={sub}></lightning-input>
+          <lightning-textarea label="Body" onchange={bod}></lightning-textarea>
+        </div>
+      </lightning-card>
+    </template>
+
+    <template if:true={st3}>
+      <lightning-card title="Display Email">
+        <div class="slds-box slds-theme_default">
+          <b> Recipients: </b>
+          {name} <br />
+          <b> Subject: </b>
+          {subject} <br />
+          <b> Body: </b>
+          <pre>{body}</pre>
+        </div>
+      </lightning-card>
+    </template>
+  </div>
+</template>
