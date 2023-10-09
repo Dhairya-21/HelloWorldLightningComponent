@@ -13,8 +13,8 @@ export default class ContactLms extends LightningElement {
   @api acId;
   @track accountRecord;
   @track error;
-//   acs = 1;
-  @api cont = [];
+  @track acs;
+  @track cont = [];
   @wire(getContacts, { accIds: "$acId" }) wiredData({ error, data }) {
     if (data) {
       this.accountRecord = data;
@@ -35,26 +35,14 @@ export default class ContactLms extends LightningElement {
       ? JSON.stringify(message, null, "\t")
       : "no message payload";
     this.acId = this.receivedMessage.slice(21, -3);
-    console.log(this.acId);
   }
 
   subscribeMC() {
-    // if (this.subscription) {
-    //   return;
-    // }
     this.subscription = subscribe(this.context, SAMPLEMC, (message) => {
       this.displayMessage(message);
     });
   }
   showConts() {
-    this.accountRecord.forEach((element) => {
-      this.cont.push(element);
-      console.log(element.LastName);
-      console.log(element.Id);
-      console.log(element);
-    });
-    this.acs = JSON.parse(JSON.stringify(this.cont));
-    console.log(this.cont);
-    console.log(this.acs);
+    this.acs = JSON.parse(JSON.stringify(this.accountRecord));
   }
 }

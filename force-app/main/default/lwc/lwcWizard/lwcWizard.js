@@ -72,8 +72,10 @@ export default class LwcWizard extends LightningElement {
     this.id = event.target.value;
     this.nam = event.target.label;
     if (this.email.includes(this.id)) {
-      this.email.pop(this.id);
-      this.name.pop(this.nam);
+      // this.email.pop(this.id);
+      this.email.splice(this.email.indexOf(this.id))
+      // this.name.pop(this.nam);
+      this.name.splice(this.name.indexOf(this.nam))
     } else {
       this.email.push(this.id);
       this.name.push(this.nam);
@@ -95,7 +97,9 @@ export default class LwcWizard extends LightningElement {
   }
   rm() {
     // this.email.pop(event.target.label);
-    this.name.pop(event.target.label);
+
+    this.name.splice(this.name.indexOf(event.target.label));
+    // this.name.pop(event.target.label);
     console.log(event.target.label);
   }
 

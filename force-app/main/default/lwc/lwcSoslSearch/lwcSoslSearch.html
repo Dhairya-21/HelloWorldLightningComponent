@@ -1,3 +1,25 @@
 <template>
-    
+  <div class="slds-box slds-theme_default">
+    <lightning-input type="search" label="Enter Name"></lightning-input>
+    Select Object:
+    <select class="slds-select" onchange={showChange} multiple>
+      <option value="--None--">--None--</option>
+      <option value="Account">Account</option>
+      <option value="Lead">Lead</option>
+      <option value="Contact">Contact</option>
+      <option value="Opportunity">Opportunity</option>
+    </select>
+    <p>Selected Entities are {v}</p>
+    <lightning-button
+      variant="brand"
+      label="Search"
+      onclick={handleOnClick}
+    ></lightning-button> <br/>
+    <b>Name:</b>
+    <template for:each={wiredData.data} for:item="list1">
+        <template for:each={list1} for:item="list2">
+            <p key={list1.Name}>{list2.Name}</p>
+        </template>
+    </template>
+  </div>
 </template>

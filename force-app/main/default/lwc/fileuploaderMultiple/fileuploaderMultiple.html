@@ -3,22 +3,21 @@
     <div>
       <lightning-file-upload
         label="Photo Upload"
-        multiple="true"
+        multiple="false"
         accept=".png"
         onuploadfinished={getImage}
       ></lightning-file-upload>
     </div>
     <!-- <lightning-button onclick={getImage} label="Click"></lightning-button> -->
-    <div id="dfiles" class="slds-box slds-theme_default">
-      <div style="display: flex; justify-content:space-between; align-items:center">
+    <!-- <div id="dfiles" class="slds-box slds-theme_default"> -->
+      <!-- <div style="display: flex; justify-content:space-between; align-items:center"> -->
 
-        <lightning-button label="Previous" onclick={previous}></lightning-button>
+        <!-- <lightning-button label="Previous" onclick={previous}></lightning-button>
           <b>Page {start} of {total}</b>
-          <lightning-button label="Next" onclick={next}></lightning-button>
-        </div>
-        <div>
+          <lightning-button label="Next" onclick={next}></lightning-button> -->
+
+        <!-- </div> -->
+        <!-- <div> -->
           <c-file-url></c-file-url>
-        </div>
-    </div>
   </div>
 </template>

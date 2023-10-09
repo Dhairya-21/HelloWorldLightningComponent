@@ -51,8 +51,8 @@
           <template for:each={name} for:item="i">
             <lightning-pill label={i} key={i} onremove={rm}></lightning-pill>
           </template>
-          <lightning-input label="Subject: " onchange={sub}></lightning-input>
-          <lightning-textarea label="Body" onchange={bod}></lightning-textarea>
+          <lightning-input label="Subject: " onchange={sub} value={subject}></lightning-input>
+          <lightning-textarea label="Body" onchange={bod} value={body}></lightning-textarea>
         </div>
       </lightning-card>
     </template>

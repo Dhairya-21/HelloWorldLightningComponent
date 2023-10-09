@@ -4,9 +4,10 @@
       label="Show Contacts"
       onclick={showConts}
     ></lightning-button>
+    <br/>
+    <b>Name:</b>
     <template for:each={acs} for:item="cn">
-        <p key={cn.Id}>Hello</p>
-      <p key={cn.Id}>{cn.lastName}</p>
+      <p key={cn.Id}>{cn.LastName}</p>
     </template>
   </div>
 </template>
