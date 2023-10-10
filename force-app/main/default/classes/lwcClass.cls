@@ -22,13 +22,44 @@ public with sharing class lwcClass {
   }
 
   @AuraEnabled(cacheable=true)
-  public static string sendEmail(List<String> emails, String sub, String body){
+  public static string sendEmail(List<String> emails, String sub, String body) {
     Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-    List<String> st = new List<String>();
+    if (sub != '' && body != '') {
       mail.setToAddresses(emails);
       mail.setSubject(sub);
       mail.setPlainTextBody(body);
-      Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});
+      Messaging.sendEmail(new List<Messaging.SingleEmailMessage>{ mail });
+    }
     return 'Success ';
+  }
+
+  @AuraEnabled(cacheable=true)
+  public static string sendEmail1(
+    List<String> emails,
+    String sub,
+    String body,
+    String dId
+  ) {
+    Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+    ContentVersion cv = [
+      SELECT Id
+      FROM ContentVersion
+      WHERE ContentDocumentId = :dId
+    ];
+    // mail.setFileAttachments(new Id[] {dId});
+    // mail.setDocumentAttachments(new List<Id>{ dId });
+    if (sub != '' && body != '') {
+      mail.setEntityAttachments(new List<String>{ cv.Id });
+      mail.setToAddresses(emails);
+      mail.setSubject(sub);
+      mail.setPlainTextBody(body);
+      Messaging.sendEmail(new List<Messaging.SingleEmailMessage>{ mail });
+    }
+    return 'Success ';
+  }
+
+  @AuraEnabled(cacheable=true)
+  public static Contact getCon(String ids) {
+    return [SELECT Id, LastName, Email FROM Contact WHERE Id = :ids];
   }
 }

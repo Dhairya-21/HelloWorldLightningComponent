@@ -10,10 +10,15 @@ export default class FileUrl extends LightningElement {
   recordID;
 
   @api createEl() {
-    console.log(this.file);
-    console.log(this.recordID.data);
     this.el = document.createElement("img");
     this.el.src = this.imgURL();
+    // this.el.className = this.total;
+    if (this.total === 0) {
+      this.el.style.display = "block";
+    } else {
+      this.el.style.display = "none";
+    }
+    //
     this.template.querySelector("p").parentElement.appendChild(this.el);
     this.template
       .querySelector("p")
@@ -27,12 +32,18 @@ export default class FileUrl extends LightningElement {
 
   next() {
     if (this.start < this.total) {
+      this.i = this.template.querySelectorAll("img");
+      this.i[this.start - 1].style.display = "none";
+      this.i[this.start].style.display = "block";
       this.start++;
     }
   }
   previous() {
     if (this.start > 0) {
       this.start--;
+      this.i = this.template.querySelectorAll("img");
+      this.i[this.start].style.display = "none";
+      this.i[this.start - 1].style.display = "block";
     }
   }
 }

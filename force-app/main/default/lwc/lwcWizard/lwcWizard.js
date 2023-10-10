@@ -16,7 +16,7 @@ export default class LwcWizard extends LightningElement {
   @wire(getAccounts) wiredAcc;
   @wire(getAllContacts) wiredCon;
   @wire(getAllLead) wiredLeads;
-  @wire(sendEmail, {emails: '$test', sub: '$subjectFinal', body: '$bodyFinal'}) wiredEmail;
+  // @wire(sendEmail, {emails: '$test', sub: '$subjectFinal', body: '$bodyFinal'}) wiredEmail;
 
   // connected callback
   connectedCallback() {
