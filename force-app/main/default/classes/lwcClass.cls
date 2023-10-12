@@ -28,7 +28,9 @@ public with sharing class lwcClass {
       mail.setToAddresses(emails);
       mail.setSubject(sub);
       mail.setPlainTextBody(body);
-      Messaging.sendEmail(new List<Messaging.SingleEmailMessage>{ mail });
+      if (Limits.getEmailInvocations() > 0) {
+        Messaging.sendEmail(new List<Messaging.SingleEmailMessage>{ mail });
+      }
     }
     return 'Success ';
   }
@@ -41,19 +43,17 @@ public with sharing class lwcClass {
     String dId
   ) {
     Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-    ContentVersion cv = [
-      SELECT Id
-      FROM ContentVersion
-      WHERE ContentDocumentId = :dId
-    ];
     // mail.setFileAttachments(new Id[] {dId});
     // mail.setDocumentAttachments(new List<Id>{ dId });
     if (sub != '' && body != '') {
-      mail.setEntityAttachments(new List<String>{ cv.Id });
+      mail.setEntityAttachments(new List<String>{ dId });
       mail.setToAddresses(emails);
       mail.setSubject(sub);
       mail.setPlainTextBody(body);
-      Messaging.sendEmail(new List<Messaging.SingleEmailMessage>{ mail });
+      System.debug(mail);
+      if (Limits.getEmailInvocations() > 0) {
+        Messaging.sendEmail(new List<Messaging.SingleEmailMessage>{ mail });
+      }
     }
     return 'Success ';
   }

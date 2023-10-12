@@ -2,13 +2,14 @@
   <div class="slds-box slds-theme_default">
     <div style="display: flex; align-items: center">
       <b>To: </b>
-      <lightning-pill label={recordId}></lightning-pill>
+      <lightning-pill label={recordId} onremove={rmv}></lightning-pill>
     </div>
     <div>
       <lightning-input
         type="text"
         placeholder="Subject"
         label="Subject:"
+        onchange={sub}
       ></lightning-input>
     </div>
     <div>
@@ -17,14 +18,11 @@
         label="Body:"
         placeholder="Type here..."
         variant="standard"
+        onchange={text}
       ></lightning-textarea>
     </div>
     <div>
-      <lightning-file-upload
-        label="Attach File"
-        name="fileUploader"
-        onuploadfinished={attachFile}
-      ></lightning-file-upload>
+      <lightning-input type="file" onchange={attachFile} label="Add Attachment"></lightning-input>
     </div>
     <div style="display: flex; justify-content: center">
       <lightning-button

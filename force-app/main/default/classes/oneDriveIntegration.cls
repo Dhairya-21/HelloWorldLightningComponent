@@ -13,7 +13,7 @@ public class oneDriveIntegration {
     // request.setMethod('DELETE');
     
     // request.setHeader('Authorization', 'hBearer ');
-    request.setHeader('Content-Type', 'application/json; charset=utf-8');
+    // request.setHeader('Content-Type', 'application/json; charset=utf-8');
     
     request.setBody('{"name": "Dhairya"}');
     // request.setContent(content);
