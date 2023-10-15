@@ -1,0 +1,8 @@
+<apex:page controller="dPClass">
+    <apex:form>
+        <apex:commandButton action="{!codeauth}" value="Authorise"></apex:commandButton>
+
+        <apex:inputFile id="file" value="{!file}" fileName="{!name}"></apex:inputFile>
+        <apex:commandButton action="{!Upload}" value="Upload"></apex:commandButton>
+    </apex:form>
+</apex:page>

@@ -13,8 +13,7 @@ export default class GmailIntegration extends LightningElement {
   @track subject;
   @track body;
   @track dId;
-
-  @track file;
+  @track type;
 
   @wire(getCon, { ids: "$recordId" }) wiredCont(data, error) {
     if (data) {
@@ -27,7 +26,13 @@ export default class GmailIntegration extends LightningElement {
   }
 
   sub() {
+    this.contact = JSON.parse(JSON.stringify(this.cont)).data;
     this.subject = event.target.value;
+    this.el = document.createElement('lightning-pill');
+    this.el.label = this.contact.Name;
+    if (this.template.querySelector('lightning-pill') === undefined) {
+      console.log('hello');
+    }
     // console.log(this.subject);
   }
   text() {
@@ -35,53 +40,42 @@ export default class GmailIntegration extends LightningElement {
     // console.log(this.body);
   }
   send() {
-    this.contact = JSON.parse(JSON.stringify(this.cont)).data;
     if (this.contact.Email === undefined) {
-      this.email = 'koshtidhairya99@gmail.com'
-      // console.log('No email');
-      this.body += ' (No Email. So Self)'
-    }else{
-      this.email=this.contact.Email;
+      this.email = "koshtidhairya99@gmail.com";
+    } else {
+      this.email = this.contact.Email;
     }
-      // this.subject = this.template.querySelector("lightning-input").value;
-      // this.body = this.template.querySelector("lightning-textarea").value;
-      if (this.subject === "" || this.body === "") {
-        this.showToast("error", "Subject or Body cannot be empty");
-      } else {
-        // console.log(this.subject);
-      // console.log(this.body);
+    if (this.subject === "" || this.body === "") {
+      this.showToast("error", "Subject or Body cannot be empty");
+    } else {
+      console.log(this.cont);
+      this.showToast("success", "Email sent successfully!");
+      console.log(this.subject);
       sendEmail({
         address: this.email,
         subject: this.subject,
         body: this.body,
-        cvId: this.dId
+        cvId: this.dId,
+        type: this.type
       })
-      .then((result) => {
-        this.cont = result;
-        this.showToast("success", "Email sent successfully!");
+        .then((result) => {
+          this.cont = result;
         })
         .catch((error) => {
           this.error = error;
         });
+      console.log(this.body);
     }
   }
   attachFile() {
-    this.file = event.target.files[0];
-    // this.name = this.name.slice(12);
-    console.log(this.name.name);
+    console.log(event.detail.files[0]);
+    this.dId = event.detail.files[0].contentVersionId;
+    this.type = event.detail.files[0].mimeType;
     this.el = document.createElement("p");
-    this.el.innerText = this.file.name;
+    this.el.innerText = event.detail.files[0].name;
     this.template
-      .querySelectorAll("lightning-input")[1]
+      .querySelector("lightning-file-upload")
       .parentElement.appendChild(this.el);
-
-    // console.log(event.detail.files[0]);
-    // this.dId = event.detail.files[0].contentVersionId;
-    // this.el = document.createElement("p");
-    // this.el.innerText = event.detail.files[0].name;
-    // this.template
-    //   .querySelector("lightning-file-upload")
-    //   .parentElement.appendChild(this.el);
   }
 
   showToast(title, msg) {
@@ -92,8 +86,5 @@ export default class GmailIntegration extends LightningElement {
       mode: "dissmissable"
     });
     this.dispatchEvent(event);
-  }
-  rmv() {
-    this.showToast("error", "Recipient cannot be removed");
   }
 }

@@ -1,0 +1,21 @@
+<template>
+    <div class="slds-box slds-theme_default">
+      <lightning-button 
+        variant="brand"
+        label="Authorise" 
+        onclick={redirect} 
+      ></lightning-button>
+
+      <lightning-file-upload
+        label="Upload To Dropbox"
+        name="uploader"
+        onuploadfinished={onUpload}
+      ></lightning-file-upload>
+
+        <lightning-button 
+          variant="brand"
+          label="Upload" 
+          onclick={authorise} 
+        ></lightning-button>
+    </div>
+</template>
