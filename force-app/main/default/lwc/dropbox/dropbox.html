@@ -1,21 +1,39 @@
 <template>
-    <div class="slds-box slds-theme_default">
-      <lightning-button 
+  <div class="slds-box slds-theme_default">
+    <!-- <lightning-button 
         variant="brand"
         label="Authorise" 
         onclick={redirect} 
-      ></lightning-button>
+      ></lightning-button> -->
 
+    <div style="display: flex; justify-content: space-evenly; margin-bottom: 10px; align-items: end;">
       <lightning-file-upload
         label="Upload To Dropbox"
         name="uploader"
         onuploadfinished={onUpload}
       ></lightning-file-upload>
 
-        <lightning-button 
-          variant="brand"
-          label="Upload" 
-          onclick={authorise} 
-        ></lightning-button>
+      <lightning-button
+        variant="brand"
+        label="Upload"
+        onclick={uploadTo}
+      ></lightning-button>
     </div>
+    <div>
+      <lightning-button
+      variant="brand"
+      label="Refresh"
+      onclick={onRefresh}
+      ></lightning-button>
+      <div>No Data Available</div>
+    </div>
+    
+    <lightning-button
+      variant="destructive"
+      label="Delete"
+      onclick={onDelete}
+    ></lightning-button>
+    <div>
+    </div>
+  </div>
 </template>
