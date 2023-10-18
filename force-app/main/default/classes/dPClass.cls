@@ -1,30 +1,30 @@
 public class dPClass {
-  
   // Upload File Method
-  @AuraEnabled(cacheable=true)
+  @AuraEnabled
   public static string Upload(String content) {
-    ApiKey__mdt m = ApiKey__mdt.getInstance('First_Value');
-    // System.debug(m.Key_Value__c);
-    
+    Api_Key__c AK = new Api_Key__c();
+    AK = [SELECT Name, Api_Value__c FROM Api_Key__c WHERE Name = 'First'];
+    // System.debug(AK.Api_Value__c);
+
     ContentVersion CV = new ContentVersion();
     CV = [
       SELECT Id, VersionData, FileExtension, Title, PathOnClient
       FROM ContentVersion
       WHERE ContentDocumentId = :content
-      ];
-      
+    ];
+
     String body =
-    '{"autorename":false,"mode":"add","mute":false,"path":"/Salesforce/' +
+      '{"autorename":false,"mode":"add","mute":false,"path":"/Salesforce/' +
       CV.PathOnClient +
       '", "strict_conflict":false}';
-      
-      Http http = new Http();
+
+    Http http = new Http();
     HttpRequest req = new HttpRequest();
     req.setEndpoint('https://content.dropboxapi.com/2/files/upload');
 
     req.setHeader('Content-Type', 'application/octet-stream');
     req.setHeader('Dropbox-API-Arg', body);
-    req.setHeader('Authorization', 'Bearer ' + m.Key_Value__c);
+    req.setHeader('Authorization', 'Bearer ' + AK.Api_Value__c);
 
     req.setMethod('POST');
 
@@ -42,20 +42,20 @@ public class dPClass {
     }
   }
 
-
   // Delete File Method
   @AuraEnabled(cacheable=true)
   public static string DeleteFiles(String file) {
-    ApiKey__mdt m = ApiKey__mdt.getInstance('First_Value');
-    // System.debug(m.Key_Value__c);
-    
+    Api_Key__c AK = new Api_Key__c();
+    AK = [SELECT Name, Api_Value__c FROM Api_Key__c WHERE Name = 'First'];
+    // System.debug(AK.Api_Value__c);
+
     String body = '{ "path": "/Salesforce/' + file + '" }';
-    
+
     Http h = new Http();
     HttpRequest req = new HttpRequest();
     req.setEndpoint('https://api.dropboxapi.com/2/files/delete_v2');
-    
-    req.setHeader('Authorization', 'Bearer ' + m.Key_Value__c);
+
+    req.setHeader('Authorization', 'Bearer ' + AK.Api_Value__c);
     req.setHeader('Content-Type', 'application/json');
 
     req.setMethod('POST');
@@ -72,12 +72,12 @@ public class dPClass {
     }
   }
 
-
   // Lists all files in the folder
   @AuraEnabled
   public static string ListFiles() {
-    ApiKey__mdt m = ApiKey__mdt.getInstance('First_Value');
-    // System.debug(m.Key_Value__c);
+    Api_Key__c AK = new Api_Key__c();
+    AK = [SELECT Name, Api_Value__c FROM Api_Key__c WHERE Name = 'First'];
+    // System.debug(AK.Api_Value__c);
 
     String body =
       '{ "include_deleted": false,' +
@@ -86,13 +86,13 @@ public class dPClass {
       '"include_non_downloadable_files":true,' +
       '"path": "/Salesforce",' +
       '"recursive": false }';
-      System.debug(body);
+    System.debug(body);
 
     Http h = new Http();
     HttpRequest req = new HttpRequest();
     req.setEndpoint('https://api.dropboxapi.com/2/files/list_folder');
 
-    req.setHeader('Authorization', 'Bearer ' + m.Key_Value__c);
+    req.setHeader('Authorization', 'Bearer ' + AK.Api_Value__c);
     req.setHeader('Content-Type', 'application/json');
 
     req.setMethod('POST');
@@ -108,5 +108,4 @@ public class dPClass {
       return res.getBody();
     }
   }
-
 }

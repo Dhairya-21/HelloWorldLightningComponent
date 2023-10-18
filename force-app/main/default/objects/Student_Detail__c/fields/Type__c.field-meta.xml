@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Handicap__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Arm</fullName>
+                <default>false</default>
+                <label>Arm</label>
+            </value>
+            <value>
+                <fullName>Foot</fullName>
+                <default>false</default>
+                <label>Foot</label>
+            </value>
+            <value>
+                <fullName>Mental</fullName>
+                <default>false</default>
+                <label>Mental</label>
+            </value>
+            <value>
+                <fullName>Other Physical</fullName>
+                <default>false</default>
+                <label>Other Physical</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>Arm</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>Foot</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>Mental</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>Other Physical</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

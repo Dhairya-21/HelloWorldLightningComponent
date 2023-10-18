@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Valid_Mobile_Number</fullName>
+    <active>false</active>
+    <description>Checks if the mobile number is of 10 digits</description>
+    <errorConditionFormula>LEN( MobilePhone ) &gt; 10 || 
+LEN( HomePhone ) &gt; 10 ||
+LEN( Phone ) &gt; 10 ||
+LEN( OtherPhone ) &gt; 10 ||
+LEN( AssistantPhone ) &gt; 10</errorConditionFormula>
+    <errorMessage>Phone number can not more than 10 digits</errorMessage>
+</ValidationRule>

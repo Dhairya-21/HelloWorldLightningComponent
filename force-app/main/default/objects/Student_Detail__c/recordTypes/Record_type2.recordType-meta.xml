@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Record_type2</fullName>
+    <active>true</active>
+    <description>groups by location out of india</description>
+    <label>Record type2</label>
+    <picklistValues>
+        <picklist>City__c</picklist>
+        <values>
+            <fullName>Ahmedabad</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Colombo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delhi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>London</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Luknow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Moscow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mumbai</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New York</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Country__c</picklist>
+        <values>
+            <fullName>Russia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sri Lanka</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>USA</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Arm</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foot</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mental</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other Physical</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

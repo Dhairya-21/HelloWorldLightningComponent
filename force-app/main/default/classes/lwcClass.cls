@@ -31,8 +31,10 @@ public with sharing class lwcClass {
       if (Limits.getEmailInvocations() > 0) {
         Messaging.sendEmail(new List<Messaging.SingleEmailMessage>{ mail });
       }
+      return 'Success ';
+    } else {
+      return 'Failed ';
     }
-    return 'Success ';
   }
 
   @AuraEnabled(cacheable=true)
@@ -54,12 +56,14 @@ public with sharing class lwcClass {
       if (Limits.getEmailInvocations() > 0) {
         Messaging.sendEmail(new List<Messaging.SingleEmailMessage>{ mail });
       }
+      return 'Success ';
+    } else {
+      return 'Failed ';
     }
-    return 'Success ';
   }
 
   @AuraEnabled(cacheable=true)
   public static Contact getCon(String ids) {
-    return [SELECT Id, LastName, Email FROM Contact WHERE Id = :ids];
+    return [SELECT Id, LastName, AccountId, Email FROM Contact WHERE Id = :ids];
   }
 }

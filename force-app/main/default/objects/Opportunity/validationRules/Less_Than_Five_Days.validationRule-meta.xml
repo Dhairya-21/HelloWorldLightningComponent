@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Less_Than_Five_Days</fullName>
+    <active>false</active>
+    <description>Checks vslid close date for opportunity</description>
+    <errorConditionFormula>CloseDate &lt; (today() + 5)</errorConditionFormula>
+    <errorDisplayField>CloseDate</errorDisplayField>
+    <errorMessage>Close date should be appropriate (it is less than five days from today)</errorMessage>
+</ValidationRule>

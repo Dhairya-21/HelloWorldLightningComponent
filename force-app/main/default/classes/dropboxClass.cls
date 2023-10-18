@@ -87,7 +87,8 @@ public class dropboxClass {
       } else {
         refreshToken = jsonValues.get('access_token');
         System.debug(refreshToken);
-        changeMetadata();
+        // changeMetadata();
+        ChangeObj(refreshToken);
       }
     } else {
       System.debug('null');
@@ -116,10 +117,12 @@ public class dropboxClass {
     return jsonMap;
   }
 
-  public static string ChangeObj() {
+  public static string ChangeObj(String token) {
     Api_Key__c AK = new Api_Key__c();
     AK = [SELECT Name, Api_Value__c FROM Api_Key__c WHERE Name = 'First'];
-    
+    Ak.Api_Value__c = token;
+    update AK;
+    return AK.Api_Value__c;
   }
 
   // Change Metadata

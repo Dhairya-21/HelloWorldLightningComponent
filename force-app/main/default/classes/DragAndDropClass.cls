@@ -48,7 +48,7 @@ public class DragAndDropClass {
   @AuraEnabled
   public static string getAccId(String s) {
     Account a = new Account();
-    a = [SELECT Id FROM Account WHERE Name = :s];
+    a = [SELECT Id FROM Account WHERE Name = :s LIMIT 1];
     return a.Id;
   }
 }

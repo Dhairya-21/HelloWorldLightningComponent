@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Record_type1</fullName>
+    <active>true</active>
+    <description>groups by location</description>
+    <label>Record type1</label>
+    <picklistValues>
+        <picklist>City__c</picklist>
+        <values>
+            <fullName>Ahmedabad</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delhi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Luknow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mumbai</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Country__c</picklist>
+        <values>
+            <fullName>India</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Arm</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foot</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mental</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other Physical</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

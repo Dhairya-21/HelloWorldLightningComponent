@@ -21,7 +21,7 @@ export default class LwcWizard extends LightningElement {
   // connected callback
   connectedCallback() {
     this.prev = true;
-    this.test.push('koshtidhairya99@gmail.com');
+    this.test.push("koshtidhairya99@gmail.com");
   }
 
   //Page Change
@@ -29,15 +29,31 @@ export default class LwcWizard extends LightningElement {
   @api prev;
   next() {
     if (this.pg === 1 && this.name.length === 0) {
-      this.showToast('Please select atleast one entity');
-    } else if (this.pg === 2 && (this.body === "" || this.subject === "" || this.name.length === 0)) {
-      this.showToast('Subject, Body or Recipients cannot be empty. If you unselected all recipients by mistake go to Stage 1 and select again');
-    } else if(this.pg !== 3){
+      this.showToast("Please select atleast one entity");
+    } else if (
+      this.pg === 2 &&
+      (this.body === "" || this.subject === "" || this.name.length === 0)
+    ) {
+      this.showToast(
+        "Subject, Body or Recipients cannot be empty. If you unselected all recipients by mistake go to Stage 1 and select again"
+      );
+    } else if (this.pg !== 3) {
       this.pg++;
       this.prev = false;
-    }else if(this.pg === 3){
+    } else if (this.pg === 3) {
       this.subjectFinal = this.subject;
       this.bodyFinal = this.body;
+      sendEmail({
+        emails: this.test,
+        sub: this.subjectFinal,
+        body: this.bodyFinal
+      })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       this.showToast(this.wiredEmail.data);
     }
   }
@@ -73,9 +89,9 @@ export default class LwcWizard extends LightningElement {
     this.nam = event.target.label;
     if (this.email.includes(this.id)) {
       // this.email.pop(this.id);
-      this.email.splice(this.email.indexOf(this.id))
+      this.email.splice(this.email.indexOf(this.id));
       // this.name.pop(this.nam);
-      this.name.splice(this.name.indexOf(this.nam))
+      this.name.splice(this.name.indexOf(this.nam));
     } else {
       this.email.push(this.id);
       this.name.push(this.nam);
@@ -129,11 +145,11 @@ export default class LwcWizard extends LightningElement {
   // Toast message
   showToast(msg) {
     const event = new ShowToastEvent({
-        title: 'Error',
-        message: msg,
-        variant: 'error',
-        mode: 'dismissable'
+      title: "Error",
+      message: msg,
+      variant: "error",
+      mode: "dismissable"
     });
     this.dispatchEvent(event);
-}
+  }
 }

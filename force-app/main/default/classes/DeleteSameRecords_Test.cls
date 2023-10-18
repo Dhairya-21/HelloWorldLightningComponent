@@ -5,6 +5,9 @@ public class DeleteSameRecords_Test {
         Account acc = new Account(Name = 'Dhairya');
         insert acc;
         Account.add(acc);
+        Account acc2 = new Account(Name = 'Dhairya');
+        insert acc2;
+        Account.add(acc2);
         test.startTest();
         DeleteSameRecords DSR = new DeleteSameRecords();
         DSR.DeleteSameRecords(Account);
