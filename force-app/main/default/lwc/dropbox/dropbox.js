@@ -6,6 +6,8 @@ import Upload from "@salesforce/apex/dPClass.Upload";
 import DeleteFiles from "@salesforce/apex/dPClass.DeleteFiles";
 import ListFiles from "@salesforce/apex/dPClass.ListFiles";
 
+import main from "@salesforce/apex/dropboxClass.main";
+
 export default class Dropbox extends LightningElement {
   @track names = [];
   @track name = "None";
@@ -13,6 +15,14 @@ export default class Dropbox extends LightningElement {
   @track file;
 
   // Upload File
+  // redirect(){
+  //   main().then((result) => {
+  //     console.log(result);
+  //   }).catch((err) => {
+  //     console.log(err);
+  //   });
+  // }
+
   onUpload() {
     this.file = event.detail.files[0];
     // console.log(JSON.parse(JSON.stringify(this.file)));

@@ -35,15 +35,22 @@ public class dropboxClass {
     }
   }
 
-  // @AuraEnabled(cacheable=true)
+  // https://www.dropbox.com/oauth2/authorize?client_id=zn918h6ids6ufuf&response_type=code&redirect_uri=https://mvclouds-3e-dev-ed--c.develop.vf.force.com
+
+  @AuraEnabled
+  public static void main(){
+    dropboxClass Dp = new dropboxClass();
+    Dp.getAuthorizationCode();
+  }
+
   public PageReference getAuthorizationCode() {
     String uri =
       Dropbox_OAuth_authorize +
       '?client_id=' +
-      apiKey +
+      apiKey + '&token_access_type=offline' +
       '&response_type=code' +
       '&redirect_uri=' +
-      redirectURI;
+      redirectURI ;
     PageReference pr = new PageReference(uri);
     pr.setRedirect(true);
     return pr;
@@ -88,7 +95,7 @@ public class dropboxClass {
         refreshToken = jsonValues.get('access_token');
         System.debug(refreshToken);
         // changeMetadata();
-        ChangeObj(refreshToken);
+        // ChangeObj(refreshToken);
       }
     } else {
       System.debug('null');

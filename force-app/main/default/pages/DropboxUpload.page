@@ -1,6 +1,8 @@
-<apex:page controller="dropboxClass">
-    <apex:pageMessages />
-    <apex:form id="myForm">
-        <apex:commandButton id="login" action="{!getAuthorizationCode}" value="Dropbox login" />
-    </apex:form>
+<apex:page controller="dropboxClass" >
+    <!-- <apex:component controller="dropboxClass" allowDML="true"> -->
+        <apex:pageMessages />
+        <apex:form id="myForm">
+            <apex:commandButton id="login" action="{!getAuthorizationCode}" value="Dropbox login" />
+        </apex:form>
+    <!-- </apex:component> -->
 </apex:page>
