@@ -10,7 +10,7 @@ public class dPClass {
     CV = [
       SELECT Id, VersionData, FileExtension, Title, PathOnClient
       FROM ContentVersion
-      WHERE ContentDocumentId = :content
+      WHERE ContentDocumentId = :content LIMIt 1
     ];
 
     String body =
