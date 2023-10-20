@@ -10,12 +10,19 @@ public class GmailFinal {
     try {
       if (address != '' && subject != '') {
         String boundary = '__ctrlq_dot_org__';
+        // ContentVersion cv = new ContentVersion();
+        // cv = [
+        //   SELECT Title, VersionData, PathOnClient
+        //   FROM ContentVersion
+        //   WHERE Id = :cvId
+        // ];
         ContentVersion cv = new ContentVersion();
         cv = [
           SELECT Title, VersionData, PathOnClient
           FROM ContentVersion
-          WHERE Id = :cvId
+          WHERE ContentDocumentId = :cvId
         ];
+
         Http h = new Http();
         HttpRequest req = new HttpRequest();
         String mimeBody = '';
@@ -60,8 +67,8 @@ public class GmailFinal {
         req.setMethod('POST');
         // req.setBody('{"raw":" ' + mimeBody + '"}');
         req.setBody(mimeBody);
-
         HttpResponse res = h.send(req);
+        System.debug(res.getBody());
       }
       return 'Success';
     } catch (Exception e) {
