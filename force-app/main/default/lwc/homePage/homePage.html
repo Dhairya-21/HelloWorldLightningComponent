@@ -1,0 +1,106 @@
+<template>
+  <div class="slds-box slds-theme_default">
+    <h1 style="font-size: large; text-align: center; font-weight: bold">
+      Welcome to the Student-Teacher Portal
+    </h1>
+    <br />
+    <p style="text-align: center">
+      New here? Create a new account by clicking on Register. Or Login using
+      your Email and Password!
+    </p>
+    <div style="display: flex; justify-content: center; gap: 20px; margin: 8px">
+      <lightning-button
+        variant="brand-outline"
+        label="Register"
+        onclick={register}
+      ></lightning-button>
+      <lightning-button
+        variant="brand"
+        label="Login"
+        onclick={login}
+      ></lightning-button>
+    </div>
+    <br />
+    <div
+      class="slds-box slds-theme_default"
+      style="display: flex; justify-content: center"
+    >
+      <div style="width: 50%">
+        <b style="text-align: center">For Students</b>
+        <p>
+          Access your courses, assignments, and grades. Know your schedule and
+          syllabus for upcoming exams and upload / see assignments assigned to
+          you.
+        </p>
+        <a
+          href=""
+          >Student Dashboard</a
+        >
+      </div>
+
+      <div style="width: 50%">
+        <b style="text-align: center">For Teachers</b>
+        <p>
+          Manage courses, assignments, and student records. Assign grades for a
+          students records, review assignments for enrolled students
+        </p>
+        <a href="">Teacher Dashboard</a>
+      </div>
+    </div>
+    <br />
+    <div class="slds-box slds-theme_default">
+      <b style="font-size: large">Events:</b>
+      <div
+        style="
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+        "
+      >
+        <div
+          class="slds-box slds-theme_default"
+          style="width: 33%; height: 100%"
+        >
+          <b>Exam registration started</b>
+          <p>
+            the long awaited exam for NSE olymiads has began. To register please
+            see this official announcement from the link below. The registration
+            begins from 23rd October. The last date for registation is 30th
+            October.
+          </p>
+        </div>
+        <div
+          class="slds-box slds-theme_default"
+          style="width: 33%; height: 100%"
+        >
+          <b>New Sports Event</b>
+          <p>
+            The registration for Sports tournament organised by XYZ school has
+            started. The events in the tornament will be distributed shortly.
+            All students are advised to participate in atleast one event for the
+            tournament.
+          </p>
+        </div>
+        <div
+          class="slds-box slds-theme_default"
+          style="width: 33%; height: 100%"
+        >
+          <b>Leave For 24th October</b>
+          <p>
+            On the Occasion of Dusshera, the school will not have any academic
+            activites for the day. However the reception will be available for
+            the office hours. For any more assistance, please contact to the
+            school reception.
+          </p>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: center; margin: 6px">
+        <lightning-button
+          variant="brand"
+          label="Load More..."
+          onclick={handleClick}
+        ></lightning-button>
+      </div>
+    </div>
+  </div>
+</template>

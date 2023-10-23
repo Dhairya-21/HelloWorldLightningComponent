@@ -10,18 +10,18 @@ public class GmailFinal {
     try {
       if (address != '' && subject != '') {
         String boundary = '__ctrlq_dot_org__';
-        // ContentVersion cv = new ContentVersion();
-        // cv = [
-        //   SELECT Title, VersionData, PathOnClient
-        //   FROM ContentVersion
-        //   WHERE Id = :cvId
-        // ];
         ContentVersion cv = new ContentVersion();
         cv = [
           SELECT Title, VersionData, PathOnClient
           FROM ContentVersion
-          WHERE ContentDocumentId = :cvId
+          WHERE Id = :cvId
         ];
+        // ContentVersion cv = new ContentVersion();
+        // cv = [
+        //   SELECT Title, VersionData, PathOnClient
+        //   FROM ContentVersion
+        //   WHERE ContentDocumentId = :cvId
+        // ];
 
         Http h = new Http();
         HttpRequest req = new HttpRequest();

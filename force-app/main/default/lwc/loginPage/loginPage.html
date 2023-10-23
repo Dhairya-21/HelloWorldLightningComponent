@@ -1,0 +1,77 @@
+<template>
+  <!-- Modal / Popup -->
+  <template if:true={isShowModal}>
+    <section
+      role="dialog"
+      tabindex="-1"
+      aria-labelledby="modal-heading-01"
+      aria-modal="true"
+      aria-describedby="modal-content-id-1"
+      class="slds-modal slds-fade-in-open"
+    >
+      <div class="slds-modal__container">
+        <header class="slds-modal__header">
+          <h2
+            id="modal-heading-01"
+            class="slds-text-heading_medium slds-hyphenate"
+          >
+            Student or Teacher?
+          </h2>
+        </header>
+
+        <div
+          class="slds-modal__content slds-p-around_medium"
+          id="modal-content-id-1"
+        >
+          <p style="text-align: center; margin-bottom: 10px">
+            Click on the following buttons to create a account for a student or
+            teacher.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 20px">
+            <lightning-button
+              variant="brand"
+              label="Student Account"
+              onclick={student}
+            ></lightning-button>
+            <lightning-button
+              variant="brand"
+              label="Teacher Account"
+              onclick={teacher}
+            ></lightning-button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>
+
+  <div class="slds-box slds-theme_default">
+    <template if:true={isShowStudent}>
+      <b style="font-size: large; text-align: center">Student Login</b>
+      <br />
+      <div>
+        <lightning-input
+          type="text"
+          label="Enter your Username / Email"
+          onchange={email}
+        ></lightning-input>
+        <lightning-input
+          type="password"
+          label="Enter your password"
+          onchange={password}
+        ></lightning-input>
+      </div>
+
+      <div style="display: flex; justify-content: center; margin: 8px">
+        <lightning-button
+          variant="success"
+          label="Login"
+          onclick={login}
+        ></lightning-button>
+      </div>
+    </template>
+    <template if:true={isShowTeacher}>
+      <b style="font-size: large; text-align: center">Teacher Login</b>
+    </template>
+  </div>
+</template>

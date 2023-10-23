@@ -1,0 +1,263 @@
+<template>
+  <!-- Modal / Popup -->
+  <template if:true={isShowModal}>
+    <section
+      role="dialog"
+      tabindex="-1"
+      aria-labelledby="modal-heading-01"
+      aria-modal="true"
+      aria-describedby="modal-content-id-1"
+      class="slds-modal slds-fade-in-open"
+    >
+      <div class="slds-modal__container">
+        <header class="slds-modal__header">
+          <h2
+            id="modal-heading-01"
+            class="slds-text-heading_medium slds-hyphenate"
+          >
+            Student or Teacher?
+          </h2>
+        </header>
+
+        <div
+          class="slds-modal__content slds-p-around_medium"
+          id="modal-content-id-1"
+        >
+          <p style="text-align: center; margin-bottom: 10px">
+            Click on the following buttons to create a account for a student or
+            teacher.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 20px">
+            <lightning-button
+              variant="brand"
+              label="Student Account"
+              onclick={student}
+            ></lightning-button>
+            <lightning-button
+              variant="brand"
+              label="Teacher Account"
+              onclick={teacher}
+            ></lightning-button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>
+
+  <!-- Simple division -->
+  <div class="slds-box slds-theme_default">
+    <!-- Student -->
+    <template if:true={isShowStudent}>
+      <b style="text-align: center; font-size: large">Student</b>
+      <p>Please choose your email wisely. Your email would be your username</p>
+
+      <!-- Name -->
+      <div style="display: flex; justify-content: space-evenly; gap: 10px">
+        <div style="width: 50%">
+          <lightning-input
+            label="Enter your First name"
+            required="true"
+            value={fname1}
+            onchange={fname}
+          ></lightning-input>
+        </div>
+        <div style="width: 50%">
+          <lightning-input
+            label="Enter your Last name"
+            required="true"
+            value={lname1}
+            onchange={lname}
+          ></lightning-input>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <lightning-input
+          type="email"
+          label="Enter your Email"
+          required="true"
+          value={email1}
+          onchange={email}
+        ></lightning-input>
+      </div>
+
+      <!-- Password -->
+      <div style="display: flex; justify-content: space-between; gap: 10px">
+        <div style="width: 50%">
+          <lightning-input
+            type="password"
+            label="Enter your Password"
+            required="true"
+            value={password1}
+            onchange={password}
+          ></lightning-input>
+        </div>
+        <div style="width: 50%">
+          <lightning-input
+            type="password"
+            label="Confirm Password"
+            required="true"
+            value={cpassword1}
+            onchange={cpassword}
+          ></lightning-input>
+        </div>
+      </div>
+
+      <!-- Age, Phone -->
+      <div style="display: flex; justify-content: space-evenly; gap: 10px">
+        <div style="width: 50%">
+          <lightning-input
+            type="number"
+            label="Enter your Age"
+            required="true"
+            value={age1}
+            onchange={age}
+          ></lightning-input>
+        </div>
+        <div style="width: 50%">
+          <lightning-input
+            type="phone"
+            label="Enter your Phone number"
+            required="true"
+            value={phone1}
+            onchange={phone}
+          ></lightning-input>
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div>
+        <lightning-textarea
+          max-length="300"
+          name="Address"
+          value={add}
+          label="Enter your address"
+          variant="standard"
+          onchange={address}
+        ></lightning-textarea>
+      </div>
+
+      <!-- Buttons -->
+      <div style="display: flex; justify-content: end; gap: 10px; margin: 8px">
+        <lightning-button
+          variant="destructive"
+          label="Reset"
+          onclick={reset}
+        ></lightning-button>
+        <lightning-button
+          variant="success"
+          label="Create Account"
+          onclick={create}
+        ></lightning-button>
+      </div>
+    </template>
+
+    <!-- Teacher -->
+    <template if:true={isShowTeacher}>
+      <b style="text-align: center; font-size: large">Teacher</b>
+      <p>Please choose your email wisely. Your email would be your username</p>
+      <!-- Name -->
+      <div style="display: flex; justify-content: space-evenly; gap: 10px">
+        <div style="width: 50%">
+          <lightning-input
+            label="Enter your First name"
+            required="true"
+            value={fname1}
+            onchange={fname}
+          ></lightning-input>
+        </div>
+        <div style="width: 50%">
+          <lightning-input
+            label="Enter your Last name"
+            required="true"
+            value={lname1}
+            onchange={lname}
+          ></lightning-input>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <lightning-input
+          type="email"
+          label="Enter your Email"
+          required="true"
+          value={email1}
+          onchange={email}
+        ></lightning-input>
+      </div>
+
+      <!-- Password -->
+      <div style="display: flex; justify-content: space-between; gap: 10px">
+        <div style="width: 50%">
+          <lightning-input
+            type="password"
+            label="Enter your Password"
+            required="true"
+            value={password1}
+            onchange={password}
+          ></lightning-input>
+        </div>
+        <div style="width: 50%">
+          <lightning-input
+            type="password"
+            label="Confirm Password"
+            required="true"
+            value={cpassword1}
+            onchange={cpassword}
+          ></lightning-input>
+        </div>
+      </div>
+
+      <!-- Age, Phone -->
+      <div style="display: flex; justify-content: space-evenly; gap: 10px">
+        <div style="width: 50%">
+          <lightning-input
+            type="number"
+            label="Enter your Age"
+            required="true"
+            value={age1}
+            onchange={age}
+          ></lightning-input>
+        </div>
+        <div style="width: 50%">
+          <lightning-input
+            type="phone"
+            label="Enter your Phone number"
+            required="true"
+            value={phone1}
+            onchange={phone}
+          ></lightning-input>
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div>
+        <lightning-textarea
+          max-length="300"
+          name="Address"
+          value={add}
+          label="Enter your address"
+          variant="standard"
+          onchange={address}
+        ></lightning-textarea>
+      </div>
+
+      <!-- Buttons -->
+      <div style="display: flex; justify-content: end; gap: 10px; margin: 8px">
+        <lightning-button
+          variant="destructive"
+          label="Reset"
+          onclick={reset}
+        ></lightning-button>
+        <lightning-button
+          variant="success"
+          label="Create Account"
+          onclick={create}
+        ></lightning-button>
+      </div>
+    </template>
+  </div>
+</template>
