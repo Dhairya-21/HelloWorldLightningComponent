@@ -47,7 +47,7 @@
 
   <div class="slds-box slds-theme_default">
     <template if:true={isShowStudent}>
-      <b style="font-size: large; text-align: center">Student Login</b>
+      <b style="font-size: large; text-align: center">Student's Login</b>
       <br />
       <div>
         <lightning-input
@@ -60,6 +60,8 @@
           label="Enter your password"
           onchange={password}
         ></lightning-input>
+        <a href="" style="float: right"> <i> forgot password? </i> </a>
+        <br />
       </div>
 
       <div style="display: flex; justify-content: center; margin: 8px">
@@ -71,7 +73,29 @@
       </div>
     </template>
     <template if:true={isShowTeacher}>
-      <b style="font-size: large; text-align: center">Teacher Login</b>
+      <b style="font-size: large; text-align: center">Teacher's Login</b>
+      <div>
+        <lightning-input
+          type="text"
+          label="Enter your Username / Email"
+          onchange={email}
+        ></lightning-input>
+        <lightning-input
+          type="password"
+          label="Enter your password"
+          onchange={password}
+        ></lightning-input>
+        <a href="" style="float: right"> <i> forgot password? </i> </a>
+        <br />
+      </div>
+
+      <div style="display: flex; justify-content: center; margin: 8px">
+        <lightning-button
+          variant="success"
+          label="Login"
+          onclick={login}
+        ></lightning-button>
+      </div>
     </template>
   </div>
 </template>

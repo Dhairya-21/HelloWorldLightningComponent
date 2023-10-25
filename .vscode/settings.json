@@ -5,5 +5,7 @@
     "**/.sfdx": true
   },
   "git.ignoreLimitWarning": true,
-  "salesforcedx-vscode-core.show-cli-success-msg": false
+  "salesforcedx-vscode-core.show-cli-success-msg": false,
+  "salesforcedx-vscode-core.push-or-deploy-on-save.enabled": false,
+  "dx-code-companion.autosave.enabled": false
 }

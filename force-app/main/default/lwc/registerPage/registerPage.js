@@ -1,7 +1,8 @@
 import { LightningElement, track } from "lwc";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
+import { NavigationMixin } from "lightning/navigation";
 
-export default class RegisterPage extends LightningElement {
+export default class RegisterPage extends NavigationMixin(LightningElement) {
   @track isShowModal = true;
   @track isShowTeacher = false;
   @track isShowStudent = false;
@@ -89,8 +90,20 @@ export default class RegisterPage extends LightningElement {
     } else {
       if (this.isShowStudent === true) {
         console.log("student");
+        this[NavigationMixin.Navigate]({
+          type: "standard__webPage",
+          attributes: {
+            url: "https://mvclouds-3e-dev-ed.develop.my.site.com/portal/s/"
+          }
+        });
       } else if (this.isShowTeacher === true) {
         console.log("teacher");
+        this[NavigationMixin.Navigate]({
+          type: "standard__webPage",
+          attributes: {
+            url: "https://mvclouds-3e-dev-ed.develop.my.site.com/portal/s/"
+          }
+        }, true);
       }
       this.dispatchEvent(
         new ShowToastEvent({
