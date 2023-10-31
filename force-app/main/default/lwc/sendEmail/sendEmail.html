@@ -1,0 +1,18 @@
+<template>
+    <div class="slds-box slds-theme_default"> 
+        <lightning-input type="email" label="To:" onchange={toAdd}></lightning-input>
+        <lightning-input type="email" label="CC:" onchange={ccAdd}></lightning-input>
+            <lightning-input type="email" label="BCC:" onchange={bccAdd}></lightning-input>
+            <lightning-input type="text" label="Subject:" onchange={subjectChange}></lightning-input>
+            <br />
+            <lightning-input-rich-text label="Body" onchange={bodyChange} ></lightning-input-rich-text>
+            <p>Please check the account record <a href={href}> here</a>. </p>
+            <p>This email is sent from koshtidhairya99@gmail.com</p>
+            <br />
+            <p>Regards,</p>
+        </div>
+          <div style="display: flex; gap: 10px; justify-content: center; margin: 8px;">
+            <lightning-button variant="neutral" label="Cancel" onclick={Cancel}></lightning-button>
+            <lightning-button variant="success" label="Send Email" onclick={sendEmail} ></lightning-button> 
+            </div>
+ </template>

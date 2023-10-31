@@ -1,0 +1,42 @@
+<template>
+  <div class="slds-box slds-theme_default">
+    <div>
+      <select onchange={select} class="slds-select">
+        <option value="None">---None---</option>
+        <template for:each={account} for:item="acc">
+          <option key={acc.Id} value={acc.Name}> {acc.Name}</option>
+        </template>
+      </select>
+    </div>
+    <br/>
+    <br/>
+    <div>
+      <b>Contacts:</b>
+      <br />
+      </div>
+  
+      <table class="slds-table slds-table_cell-buffer">
+          <tr class="slds-line-height_reset">
+            <th><b>Salutation</b></th>
+            <th><b>First Name</b></th>
+            <th><b>Last Name</b></th>
+            <th><b>Email</b></th>
+            <th><b>Phone</b></th>
+          </tr>
+        <template for:each={contact} for:item="con">
+            
+          <tr key={con.Id} style="padding: 4px;" class="slds-hint-parent" id={con.Id}>
+              <td><lightning-combobox value={con.Salutation} options={options} onchange={handleChange} disabled={editmode}></lightning-combobox></td>
+              <td><lightning-input type="text" value={con.FirstName} readonly={editmode}></lightning-input></td>
+              <td><lightning-input type="text" value={con.LastName} readonly={editmode}></lightning-input></td>
+              <td><lightning-input type="email" value={con.Email} readonly={editmode}></lightning-input></td>
+              <td><lightning-input type="text" value={con.Phone} readonly={editmode}></lightning-input></td>
+            </tr>
+        </template>
+      </table>
+      
+      <div style="margin: 20px; display: flex; justify-content: end; gap: 10px">
+        <lightning-button variant="brand" label="Edit" onclick={editToggle}></lightning-button>
+      </div>
+    </div>
+</template>

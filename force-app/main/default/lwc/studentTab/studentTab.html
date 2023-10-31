@@ -1,0 +1,182 @@
+<template>
+  <lightning-tabset variant="standard">
+    <lightning-tab label="Profile">
+      <div class="slds-box slds-theme_default">
+        <h1 style="text-align: center; font-size: large; font-weight: bold">
+          My Profile
+        </h1>
+        <br />
+        <div style="display: flex; justify-content: center">
+          <div style="border: solid white; border-radius: 24px">
+            <img src={img} />
+          </div>
+        </div>
+        <br />
+        <div>
+          <div style="display: flex; justify-content: space-evenly; gap: 10px">
+            <div style="width: 50%">
+              <lightning-input
+                label="First name"
+                required="true"
+                value={fname1}
+                onchange={fname}
+                readonly={edit}
+              ></lightning-input>
+            </div>
+            <div style="width: 50%">
+              <lightning-input
+                label="Last name"
+                required="true"
+                value={lname1}
+                onchange={lname}
+                readonly={edit}
+              ></lightning-input>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <lightning-input
+              type="email"
+              label="Email"
+              required="true"
+              value={email1}
+              onchange={email}
+              readonly={edit}
+            ></lightning-input>
+          </div>
+
+          <!-- Age, Phone -->
+          <div style="display: flex; justify-content: space-evenly; gap: 10px">
+            <div style="width: 50%">
+              <lightning-input
+                type="number"
+                label="Age"
+                required="true"
+                value={age1}
+                onchange={age}
+                readonly={edit}
+              ></lightning-input>
+            </div>
+            <div style="width: 50%">
+              <lightning-input
+                type="phone"
+                label="Phone number"
+                required="true"
+                value={phone1}
+                onchange={phone}
+                readonly={edit}
+              ></lightning-input>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div>
+            <lightning-textarea
+              max-length="300"
+              name="Address"
+              value={add}
+              label="Address"
+              variant="standard"
+              onchange={address}
+              readonly={edit}
+            ></lightning-textarea>
+          </div>
+
+          <!-- Button -->
+          <div style="display: flex; justify-content: center; margin: 10px">
+            <lightning-button
+              variant="brand"
+              label="Edit"
+              onclick={changeEdit}
+            ></lightning-button>
+          </div>
+        </div>
+      </div>
+    </lightning-tab>
+    <lightning-tab label="Class Semester">
+      <br />
+      <div class="slds-box slds-theme_default">
+        <b style="font-size: large">Current Semester: 1st</b>
+        <br />
+        <div style="display: flex; justify-content: center; gap: 10px">
+          <div
+            class="slds-box slds-theme_default"
+            style="height: 100%; width: 50%"
+          >
+            <b style="font-size: large">Subjects:- </b>
+            <br />
+            <div>
+              <p style="font-weight: bold; margin: 8px 0px">
+                Analysis Of Design and Algorithm:
+              </p>
+              Analysis of Design and Algorithms is a course that provides
+              students with the knowledge necessary to design, analyze,
+              implement, test, and optimize algorithms. It also introduces them
+              to the principles/principles underlying computer science as well
+              as the software engineering process. The course covers topics such
+              as data structures, recursion, sorting, searching, graph theory,
+              and more.
+              <br />
+
+              <p style="font-weight: bold; margin: 8px 0px">
+                Data Structures and Algorithms:
+              </p>
+              Data Structures and Algorithms is an introductory course in
+              Computer Science. Data Structures and Algorithms is an
+              introductory course in which students learn about basic data
+              structures (e.g., arrays, linked lists) and how to use these data
+              structures to solve problems efficiently.
+              <br />
+
+              <p style="font-weight: bold; margin: 8px 0px">
+                Database Management Systems:
+              </p>
+              Database Management Systems is an introductory course for those
+              who want to understand database systems. This course will
+              introduce you to the basics of databases including creating
+              tables, inserting records, querying records, updating records,
+              deleting records, etc. You'll be able to create your own database
+              system from scratch!
+              <br />
+
+              <p style="font-weight: bold; margin: 8px 0px">
+                Network Technology and Peripherals:
+              </p>
+              Network technology and peripheral devices are studied in this
+              course. Students will explore network protocols, hardware
+              components, and their role within the network environment. They
+              will then work on building their own network using Java
+              programming language.
+              <br />
+
+              <p style="font-weight: bold; margin: 8px 0px">
+                Operating System Concepts:
+              </p>
+              Operating System Concepts is designed to provide students with a
+              solid understanding of operating systems so they can better
+              appreciate the complexities involved in developing applications
+              for Windows, Linux, Macintosh OS X, Solaris, and other Unix
+              platforms.
+              <br />
+
+              <p style="font-weight: bold; margin: 8px 0px">Cyber Security:</p>
+              Cybersecurity is a broad field that involves protecting
+              information from threats. In this course, we cover security
+              measures at all levels - physical, logical, and policy. We look at
+              encryption techniques, secure coding practices, threat detection,
+              risk management, and much more.
+              <br />
+            </div>
+          </div>
+          <div
+            class="slds-box slds-theme_default"
+            style="height: 100%; width: 50%"
+          >
+            <p>Hello</p>
+          </div>
+        </div>
+      </div>
+    </lightning-tab>
+  </lightning-tabset>
+</template>

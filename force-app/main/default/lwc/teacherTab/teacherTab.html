@@ -1,0 +1,212 @@
+<template>
+  <lightning-tabset variant="standard" active-tab-value="two">
+    <lightning-tab label="Profile" value="one">
+      <div class="slds-box slds-theme_default">
+        <h1 style="text-align: center; font-size: large; font-weight: bold">
+          My Profile
+        </h1>
+        <br />
+        <div style="display: flex; justify-content: center">
+          <div style="border: solid white; border-radius: 24px">
+            <img src={img} />
+          </div>
+        </div>
+        <br />
+        <div>
+          <div style="display: flex; justify-content: space-evenly; gap: 10px">
+            <div style="width: 50%">
+              <lightning-input
+                label="First name"
+                required="true"
+                value={fname1}
+                onchange={fname}
+                readonly={edit}
+              ></lightning-input>
+            </div>
+            <div style="width: 50%">
+              <lightning-input
+                label="Last name"
+                required="true"
+                value={lname1}
+                onchange={lname}
+                readonly={edit}
+              ></lightning-input>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <lightning-input
+              type="email"
+              label="Email"
+              required="true"
+              value={email1}
+              onchange={email}
+              readonly={edit}
+            ></lightning-input>
+          </div>
+
+          <!-- Age, Phone -->
+          <div style="display: flex; justify-content: space-evenly; gap: 10px">
+            <div style="width: 50%">
+              <lightning-input
+                type="number"
+                label="Age"
+                required="true"
+                value={age1}
+                onchange={age}
+                readonly={edit}
+              ></lightning-input>
+            </div>
+            <div style="width: 50%">
+              <lightning-input
+                type="phone"
+                label="Phone number"
+                required="true"
+                value={phone1}
+                onchange={phone}
+                readonly={edit}
+              ></lightning-input>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div>
+            <lightning-textarea
+              max-length="300"
+              name="Address"
+              value={add}
+              label="Address"
+              variant="standard"
+              onchange={address}
+              readonly={edit}
+            ></lightning-textarea>
+          </div>
+
+          <lightning-button
+            variant="neutral"
+            label="Button Label"
+            onclick={send}
+          ></lightning-button>
+          <!-- Button -->
+          <div style="display: flex; justify-content: center; margin: 10px">
+            <lightning-button
+              variant="brand"
+              label="Edit"
+              onclick={changeEdit}
+            ></lightning-button>
+          </div>
+        </div>
+      </div>
+    </lightning-tab>
+    <lightning-tab label="Students" value="two">
+      <div style="margin: 10px 4px">
+        <lightning-button
+          variant="brand"
+          label="Refresh"
+          onclick={send}
+        ></lightning-button>
+      </div>
+      <table>
+        <tr>
+          <td>First Name</td>
+          <td>Last Name</td>
+          <td>Email</td>
+          <td>Age</td>
+          <td>Phone</td>
+          <td>Address</td>
+        </tr>
+
+        <template for:each={recordsList} for:item="a">
+          <tr key={a.Id}>
+            <td onclick={setName} data-id={a.Id}>{a.Name}</td>
+            <td>{a.Last_Name}</td>
+            <td>{a.Email__c}</td>
+            <td>{a.Age__c}</td>
+            <td>{a.Personal_Phone_no__c}</td>
+            <td>{a.Address__c}</td>
+          </tr>
+        </template>
+      </table>
+    </lightning-tab>
+    <template if:true={feed}>
+      <lightning-tab label="FeedBack" value="three">
+        <div>
+          <div style="display: flex; justify-content: space-evenly; gap: 10px">
+            <div style="width: 50%">
+              <lightning-input
+                label="First name"
+                value={record.Name}
+                readonly="true"
+              ></lightning-input>
+            </div>
+            <div style="width: 50%">
+              <lightning-input
+                label="Last name"
+                value={record.Last_Name__c}
+                readonly="true"
+              ></lightning-input>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <lightning-input
+              type="email"
+              label="Email"
+              value={record.Email}
+              readonly="true"
+            ></lightning-input>
+          </div>
+
+          <!-- Age, Phone -->
+          <div style="display: flex; justify-content: space-evenly; gap: 10px">
+            <div style="width: 50%">
+              <lightning-input
+                type="number"
+                label="Age"
+                value={record.age}
+                readonly="true"
+              ></lightning-input>
+            </div>
+            <div style="width: 50%">
+              <lightning-input
+                type="phone"
+                label="Phone number"
+                value={record.Personal_Phone_no__c}
+                readonly="true"
+              ></lightning-input>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div>
+            <lightning-textarea
+              max-length="300"
+              name="Address"
+              value={record.Address__c}
+              label="Address"
+              variant="standard"
+              readonly="true"
+            ></lightning-textarea>
+
+            <!-- Feedback -->
+            <lightning-textarea 
+               
+              max-length="1000"
+              name="Feedback" 
+              label="Feedback"
+              onchange={feedback}
+              variant="standard"
+            ></lightning-textarea>
+          </div>
+          <lightning-button 
+            variant="success"
+            label="Submit" 
+            onclick={setFeedback} 
+          ></lightning-button>
+        </div>
+      </lightning-tab>
+    </template>
+  </lightning-tabset>
+</template>
