@@ -102,4 +102,7 @@ export default class sendEmail extends NavigationMixin(LightningElement) {
             });
         }
     }
+    access(){
+        
+    }
 }

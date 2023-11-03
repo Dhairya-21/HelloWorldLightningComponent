@@ -39,6 +39,7 @@
     ]
   },
   "dependencies": {
-    "unsplash-js": "^7.0.18"
+    "unsplash-js": "^7.0.18",
+    "xlsx": "^0.18.5"
   }
 }
