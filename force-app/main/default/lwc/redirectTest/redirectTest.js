@@ -1,5 +1,6 @@
 import { LightningElement } from 'lwc';
 import { NavigationMixin } from "lightning/navigation";
+import { LightningAlert } from "lightning/alert";
 
 export default class RedirectTest extends NavigationMixin(LightningElement) {
     navigate(){
@@ -10,4 +11,14 @@ export default class RedirectTest extends NavigationMixin(LightningElement) {
             }
         });
     }
-}
+        async handleAlertClick() {
+          await LightningAlert.open({
+            message: "this is the alert message",
+            variant: "header", // if headerless, theme not applicable
+            theme: "default", 
+            label: "Error", // this is the header text
+          });
+          //Alert has been closed
+          
+        }
+    }
