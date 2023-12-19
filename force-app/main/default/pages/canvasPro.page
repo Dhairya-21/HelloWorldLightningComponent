@@ -1,22 +1,37 @@
 <apex:page>
+    <style>
+        .canvases{
+            border: 2px black solid;
+            position: absolute;
+            top: 24px;
+            left: 8px;
+        }
+    </style>
     <form>
         <div style="display: flex; justify-content: space-evenly; align-items: center">
             <input type="number" min="1" max="10" id="size" value="1" />
-            <input type="text" id="type" value="1"/>
+            <select id="type">
+                <option value="1">Pen 1</option>
+                <option value="4">Pen 2</option>
+                <option value="2">Brush 1</option>
+                <option value="3">Brush 2</option>
+            </select>
             <button id="undo">undo</button>
             <button id="redo">redo</button>
             <button id="clear">Clear</button>
             <button id="erase">Eraser</button>
             <button id="pen" style="display: none">Pen</button>
+            <div>
+                <input type="file" id="stampcl" accept="image/*"/>
+            </div>
         </div>
         <br/>
-        <canvas id="paint" style="border: 2px black solid"></canvas>
+        <canvas class="canvases" id="stamp" style="z-index: 0"></canvas>
+        <canvas class="canvases" id="paint" style="z-index: 1"></canvas>
     </form>
     <script type="text/javascript">
         const canvas = document.getElementById('paint');
         const ctx = canvas.getContext('2d');
-        canvas.width = 600;
-        canvas.height = 200;
         ctx.lineJoin = 'round';
         ctx.lineWidth = 1;
         ctx.lineCap = 'round';
@@ -26,7 +41,8 @@
         let pathsry = [];
         let pathRedo = [];
         let points = [];
-
+        let mode = 'pen';
+        
         var brushType = 1;
         var mouse = { x: 0, y: 0 };
         var previous = { x: 0, y: 0 };
@@ -43,7 +59,6 @@
             if (drawing) {
                 previous = { x: mouse.x, y: mouse.y };
                 mouse = oMousePos(canvas, e);
-                points.push({ x: mouse.x, y: mouse.y, z: ctx.lineWidth, clr: ctx.strokeStyle, style: brushType });
                 draw(previous, mouse, brushType);
             }
         }, false);
@@ -55,6 +70,9 @@
         }, false);
 
         size.addEventListener("change", function (event) {
+            if(event.target.value > 10){
+                event.target.value = 10;
+            }
             ctx.lineWidth = event.target.value;
         });
 
@@ -64,7 +82,8 @@
         erase.addEventListener('click', EraseSelect);
         pen.addEventListener('click', PenSelect);
         type.addEventListener('change', penType);
-
+        stampcl.addEventListener('change', uploadStamp);
+        
         function Undo(event) {
             event.preventDefault();
             if (pathsry.length > 0) {
@@ -73,7 +92,7 @@
                 drawPaths();
             }
         }
-
+        
         function Redo(event) {
             event.preventDefault();
             if (pathRedo.length > 0) {
@@ -90,23 +109,24 @@
             pathRedo = [];
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
-
+        
         function EraseSelect(event) {
             event.preventDefault();
-            ctx.strokeStyle = 'white';
+            mode = 'eraser';
             pen.style.display = 'block';
             erase.style.display = 'none';
         }
 
         function PenSelect(event) {
             event.preventDefault();
-            ctx.strokeStyle = 'red';
+            mode = 'pen';
             pen.style.display = 'none';
             erase.style.display = 'block';
         }
 
         function penType(event) {
             event.preventDefault();
+            Clear(event);
             if (event.target.value === '1') {
                 ctx.lineJoin = 'round';
                 ctx.lineCap = 'round';
@@ -115,7 +135,6 @@
                 ctx.lineJoin = 'butt';
                 ctx.lineCap = 'butt';
                 brushType = 2;
-                console.log(1);
             } else if (event.target.value === '3') {
                 ctx.lineJoin = 'round';
                 ctx.lineCap = 'round';
@@ -128,6 +147,25 @@
             }
         }
 
+        function uploadStamp(event){
+            var canva = document.getElementById('stamp');
+            ctx2 = canva.getContext('2d');
+            event.preventDefault();
+            // Clear(event);
+            var img = new Image;
+            img.src = URL.createObjectURL(event.target.files[0]);
+            
+            img.onload = function(){
+                var width = canva.width / img.width;
+                var height = canva.height / img.height;
+                if (height < width) {
+                    ctx2.drawImage(img, 0, 0, img.width * height, canva.height);
+                } else{
+                    ctx2.drawImage(img, 0, 0, canva.width, img.height * width);
+                }
+            }
+        }
+        
         function drawPaths() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             pathsry.forEach(path => {
@@ -136,10 +174,14 @@
                 for (let i = 1; i < path.length; i++) {
                     ctx.strokeStyle = path[i].clr;
                     ctx.lineWidth = path[i].z;
-                    if (path[i].style === 1 || path[i].style === 2 || path[i].style === 4) {
-                        ctx.lineTo(path[i].x, path[i].y);
+                    ctx.globalCompositeOperation = path[i].op;
+                    if (path[i].op == 'destination-out') {
+                        ctx.arc(path[i].x, path[i].y, 8, 0, Math.PI * 2, false);
+                    } else{
+                        if (path[i].style === 1 || path[i].style === 2 || path[i].style === 4) {
+                            ctx.lineTo(path[i].x, path[i].y);
 
-                    } else if (path[i].style === 3) {
+                        } else if (path[i].style === 3) {
                         ctx.lineTo(path[i].x, path[i].y);
                         ctx.stroke();
                         ctx.lineTo(path[i].x - 2, path[i].y - 2);
@@ -151,8 +193,9 @@
                         ctx.lineTo(path[i].x + 4, path[i].y + 4);
                     }
                 }
+            }
                 ctx.stroke();
-            })
+            });
         }
 
         function oMousePos(canvas, evt) {
@@ -164,12 +207,16 @@
         }
 
         function draw(oldPos, newPos, brush) {
-            ctx.beginPath();
+            ctx.lineWidth = document.getElementById('size').value;
+            if (mode == 'pen') {
+                pathRedo = [];
 
+                ctx.globalCompositeOperation = 'source-over';
+                points.push({ x: mouse.x, y: mouse.y, z: ctx.lineWidth, clr: ctx.strokeStyle, style: brushType, op: ctx.globalCompositeOperation});
+                ctx.beginPath();
             if (brush === 1 || brush === 2) {
                 ctx.moveTo(oldPos.x, oldPos.y);
                 ctx.lineTo(newPos.x, newPos.y);
-
             } else if (brushType === 3) {
                 ctx.moveTo(oldPos.x, oldPos.y);
                 ctx.lineTo(mouse.x, mouse.y);
@@ -196,6 +243,13 @@
                 ctx.lineTo(newPos.x, newPos.y);
             }
             ctx.stroke();
+            }   
+            else if(mode == 'eraser'){
+                ctx.globalCompositeOperation = 'destination-out';
+                points.push({ x: mouse.x, y: mouse.y, z: ctx.lineWidth, clr: ctx.strokeStyle, style: brushType, op: ctx.globalCompositeOperation});
+                ctx.arc(oldPos.x, oldPos.y, 8, 0, Math.PI * 2, false);
+                ctx.fill();
+            }
         }
 
         function getRandomInt(min, max) {
